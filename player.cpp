@@ -41,7 +41,6 @@ void Player::dash(sf::View &view){
     if(skills[DASH].isReady()){
         skills[DASH].use();
         state = DASHING;
-        setStatus(INVUNERABLE, 1000);
     }
 }
 
