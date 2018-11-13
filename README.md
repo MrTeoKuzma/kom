@@ -5,5 +5,6 @@ Odlična Ideja
 Odlično delovcanje  
 Odlična organizacija  
 Čista 10ka. 
-ALOALAOAOAOAOA
+Dmitry faggot.
+
 
