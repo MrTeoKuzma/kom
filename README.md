@@ -5,4 +5,4 @@ Odlična Ideja
 Odlično delovcanje  
 Odlična organizacija  
 Čista 10ka.  
- 
+_HAY_
