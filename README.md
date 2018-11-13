@@ -4,5 +4,6 @@ Odličena Ekipa
 Odlična Ideja  
 Odlično delovcanje  
 Odlična organizacija  
-Čista 10ka.  
-_HAY_
+Čista 10ka. 
+ALOALAOAOAOAOA
+
