@@ -10,13 +10,15 @@ class Map;
 
 class Player : public Creature{
     private:
+        sf::Vector2i mouseCoord;
         Skill skills[4];
-
+        
     public:
-        Player(sf::Vector2f center);
+        Player(int x, int y);
+        void setMouseCoord(sf::Vector2i);
         void loadImg();
-        void move(sf::View &view, int dir);
-        void dash(sf::View &view);
+        void move(int dir);
+        void dash();
         void action(Map *map);
 };
 #endif

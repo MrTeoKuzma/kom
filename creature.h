@@ -23,8 +23,8 @@
 
 #define SPRITE_NUM 3
 
-#define X_DIFF(s, d) (s * !(d%2) * (d-1)) // 0 = +step, 1 = 0, 2 = -step, 3 = 0
-#define Y_DIFF(s, d) (s * (d%2) * (d-2) * -1) // 0 = 0, 1 = +step, 2 = 0, 3 = -step
+#define Y_DIFF(s, d) (s * !(d%2) * (d-1)) // 0 = +step, 1 = 0, 2 = -step, 3 = 0
+#define X_DIFF(s, d) (s * (d%2) * (d-2) * -1) // 0 = 0, 1 = +step, 2 = 0, 3 = -step
 
 class Map;
 

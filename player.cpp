@@ -1,9 +1,9 @@
 #include "player.h"
 #include "creature.h"
 
-Player::Player(sf::Vector2f center){
-    Player::x = center.x;
-    Player::y = center.y;
+Player::Player(int x, int y){
+    Player::x = x;
+    Player::y = y;
     Player::width = 128;
     Player::height = 128;
     Player::step = 5;
@@ -12,6 +12,10 @@ Player::Player(sf::Vector2f center){
     skills[DASH].data[0] = 200; //dashLength
     skills[DASH].data[1] = 10; //dashStep
     skills[DASH].data[2] = 0; //current
+}
+
+void Player::setMouseCoord(sf::Vector2i coord){
+    mouseCoord = coord;
 }
 
 void Player::loadImg(){
@@ -26,18 +30,15 @@ void Player::loadImg(){
 
 }
 
-void Player::move(sf::View &view, int dir){
+void Player::move(int dir){
     if(state == NORMAL){
         direction = dir;
-
-        view.move(Y_DIFF(step, dir), X_DIFF(step, dir));
-        sf::Vector2f center = view.getCenter();
-        x = center.x;
-        y = center.y;
+        x += X_DIFF(step, dir);
+        y += Y_DIFF(step, dir);
     }
 }
 
-void Player::dash(sf::View &view){
+void Player::dash(){
     if(skills[DASH].isReady()){
         skills[DASH].use();
         state = DASHING;
@@ -52,12 +53,8 @@ void Player::action(Map *map){
             skills[DASH].data[2] = 0;
         }else{
             skills[DASH].data[2] += skills[DASH].data[1];
-            sf::View view = map->getView();
-            view.move(Y_DIFF(skills[DASH].data[1], direction), X_DIFF(skills[DASH].data[1], direction));
-            sf::Vector2f center = view.getCenter();
-            map->setView(view);
-            x = center.x;
-            y = center.y;
+            x += X_DIFF(skills[DASH].data[1], direction);
+            y += Y_DIFF(skills[DASH].data[1], direction);
         }
     }
 }
