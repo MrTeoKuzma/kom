@@ -22,8 +22,8 @@ class Map{
         void draw(sf::RenderWindow *window);
         void addCreature(Creature *creature);
         void addPlayer(Player *player);
-        void setPlayerMouseCoord(sf::Vector2i coord);
         void movePlayer(int dir);
         void dashPlayer();
+        void doAttackPlayer(int mX, int mY);
 };
 #endif

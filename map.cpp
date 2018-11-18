@@ -8,10 +8,6 @@ Map::Map(std::string bgImage): x(0), y(0){
     addPlayer(new Player(500, 500));
 }
 
-void Map::setPlayerMouseCoord(sf::Vector2i coord){
-    player->setMouseCoord(coord);
-}
-
 void Map::draw(sf::RenderWindow *window){
     window->draw(background);
     for(unsigned int i = 0; i < creatures.size(); i++){
@@ -35,4 +31,8 @@ void Map::movePlayer(int dir){
 
 void Map::dashPlayer(){
     player->dash();
+}
+
+void Map::doAttackPlayer(int mX, int mY){
+    player->attack(mX, mY);
 }

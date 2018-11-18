@@ -10,8 +10,6 @@ void Window::handleEvents(){
     {
         if (event.type == sf::Event::Closed)
             window->close();
-        if (event.type == sf::Event::MouseMoved)
-            map->setPlayerMouseCoord(sf::Mouse::getPosition(*window));
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
@@ -35,8 +33,10 @@ void Window::handleEvents(){
     }
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        //left
+        sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
+        map->doAttackPlayer(pos.x, pos.y);
     }
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
         //right
     }

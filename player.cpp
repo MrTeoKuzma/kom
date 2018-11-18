@@ -14,10 +14,6 @@ Player::Player(int x, int y){
     skills[DASH].data[2] = 0; //current
 }
 
-void Player::setMouseCoord(sf::Vector2i coord){
-    mouseCoord = coord;
-}
-
 void Player::loadImg(){
     sprite[UP][NORMAL][NORMAL][0].loadFromFile("img/cU.png");
     sprite[RIGHT][NORMAL][NOTHING][0].loadFromFile("img/cR.png");
@@ -43,6 +39,16 @@ void Player::dash(){
         skills[DASH].use();
         state = DASHING;
     }
+}
+
+void Player::turn(int mX, int mY){
+    int deltaX = mX - x;
+    int deltaY = mY - y;
+    direction = abs(deltaX) > abs(deltaY) ? (deltaX < 0) * 2 +1 : (deltaY > 0) * 2;
+}
+
+void Player::attack(int mX, int mY){
+    turn(mX, mY);    
 }
 
 void Player::action(Map *map){

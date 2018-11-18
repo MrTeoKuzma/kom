@@ -15,10 +15,11 @@ class Player : public Creature{
         
     public:
         Player(int x, int y);
-        void setMouseCoord(sf::Vector2i);
         void loadImg();
         void move(int dir);
         void dash();
+        void turn(int mX, int mY);
+        void attack(int mX, int mY);
         void action(Map *map);
 };
 #endif
