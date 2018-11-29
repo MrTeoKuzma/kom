@@ -86,3 +86,7 @@ void Window::loadMapImg(string image){
 Map * Window::getMap(){
     return map;
 }
+
+void Window::loadMapLevel(string fileName, int dotDmg){
+    map->loadLevel(fileName, dotDmg);
+}

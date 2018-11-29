@@ -2,7 +2,7 @@
 #include "creature.h"
 #include "player.h"
 
-Map::Map(std::string bgImage): x(0), y(0){
+Map::Map(string bgImage): x(0), y(0){
     image.loadFromFile(bgImage);
     background.setTexture(image, true);
     addPlayer(new Player(500, 500));
@@ -26,7 +26,7 @@ void Map::addPlayer(Player *player){
 }
 
 void Map::movePlayer(int dir){
-    player->move(dir);
+    player->move(dir, level);
 }
 
 void Map::dashPlayer(){
@@ -35,4 +35,12 @@ void Map::dashPlayer(){
 
 void Map::doAttackPlayer(int mX, int mY){
     player->attack(mX, mY);
+}
+
+void Map::loadLevel(string fileName, int dotDmg){
+    level = new Level(fileName, dotDmg);
+}
+
+Level * Map::getLevel(){
+    return level;
 }

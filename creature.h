@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "map.h"
 #include "skill.h"
+#include "level.h"
 
 //direction
 #define UP 0
@@ -52,7 +53,9 @@ class Creature{
         void init();
         void draw(sf::RenderWindow *window);
         void setStatus(int status, int duration);
+        void canMove(int &step, Level * level);
+        void move(int dir, Level * level);
         virtual void action(Map *map);
-        virtual void loadImg() = 0;      
+        virtual void loadImg() = 0; 
 };
 #endif

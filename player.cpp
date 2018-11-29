@@ -6,7 +6,7 @@ Player::Player(int x, int y){
     Player::y = y;
     Player::width = 128;
     Player::height = 128;
-    Player::step = 5;
+    Player::step = 4;
     loadImg();
     skills[DASH].setCooldown(1000);
     skills[DASH].data[0] = 200; //dashLength
@@ -24,14 +24,6 @@ void Player::loadImg(){
     sprite[DOWN][DASHING][NOTHING][0].loadFromFile("img/cD.png");
     sprite[LEFT][DASHING][NOTHING][0].loadFromFile("img/cL.png");
 
-}
-
-void Player::move(int dir){
-    if(state == NORMAL){
-        direction = dir;
-        x += X_DIFF(step, dir);
-        y += Y_DIFF(step, dir);
-    }
 }
 
 void Player::dash(){
@@ -59,8 +51,10 @@ void Player::action(Map *map){
             skills[DASH].data[2] = 0;
         }else{
             skills[DASH].data[2] += skills[DASH].data[1];
-            x += X_DIFF(skills[DASH].data[1], direction);
-            y += Y_DIFF(skills[DASH].data[1], direction);
+            int tmpStep = skills[DASH].data[1];
+            canMove(tmpStep, map->getLevel());
+            x += X_DIFF(tmpStep, direction);
+            y += Y_DIFF(tmpStep, direction);
         }
     }
 }

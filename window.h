@@ -18,6 +18,7 @@ class Window{
         void handleEvents();
         void startGame();
         void loadMapImg(string image);
+        void loadMapLevel(string fileName, int dotDmg);
         Map * getMap();
 };
 #endif
