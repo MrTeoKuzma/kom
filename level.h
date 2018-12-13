@@ -6,7 +6,9 @@
 
 #define WALL '#'
 #define EMPTY '_'
-#define HOT 'x' 
+#define HOT 'x'
+#define FALL '.'
+
 using namespace std;
 class Level{
     public:    
@@ -17,5 +19,6 @@ class Level{
     public:
         Level(string fileName, int dotDmg);
         void readFile(string fileName);
+        int getDotDmg();
 };
 #endif

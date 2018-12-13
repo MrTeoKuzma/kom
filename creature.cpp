@@ -64,7 +64,27 @@ void Creature::setStatus(int status, int duration){
 }
 
 void Creature::action(Map *map){
+    int pY, pX;
+    bool isFall = true;
+
     if(statusChange.isReady()){
         status = NORMAL;
     }
+
+    for(pY = y/OBSIZE; pY < ((y+height)/OBSIZE); pY++){
+        for(pX = x/OBSIZE; pX < ((x+width)/OBSIZE); pX++){
+            if(map->getLevel()->obstacles[pY][pX] == HOT){
+                setStatus(DOT, 1000);
+                pY = (y+height)/OBSIZE+1;
+                break;
+            }
+
+            if(map->getLevel()->obstacles[pY][pX] != FALL){
+                isFall = false;
+            }
+        }
+    }
+    if(isFall)
+        sf::err()<<"Fall\n";
+
 }

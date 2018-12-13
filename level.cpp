@@ -15,3 +15,7 @@ void Level::readFile(string fileName){
     }
     file.close();
 }
+
+int Level::getDotDmg(){
+    return dotDmg;
+}
