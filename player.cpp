@@ -58,3 +58,11 @@ void Player::action(Map *map){
         }
     }
 }
+
+int Player::getX(){
+    return x;
+}
+
+int Player::getY(){
+    return y;
+}

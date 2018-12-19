@@ -1,11 +1,13 @@
 #include "map.h"
 #include "creature.h"
 #include "player.h"
+#include "enemy01.h"
 
 Map::Map(string bgImage): x(0), y(0){
     image.loadFromFile(bgImage);
     background.setTexture(image, true);
     addPlayer(new Player(500, 500));
+    addCreature(new Enemy01(800, 600));
 }
 
 void Map::draw(sf::RenderWindow *window){
@@ -43,4 +45,8 @@ void Map::loadLevel(string fileName, int dotDmg){
 
 Level * Map::getLevel(){
     return level;
+}
+
+Player * Map::getPlayer(){
+    return player;
 }

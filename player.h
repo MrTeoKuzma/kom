@@ -20,5 +20,7 @@ class Player : public Creature{
         void turn(int mX, int mY);
         void attack(int mX, int mY);
         void action(Map *map);
+        int getX();
+        int getY();
 };
 #endif

@@ -31,5 +31,6 @@ class Map{
         void doAttackPlayer(int mX, int mY);
         void loadLevel(string fileName, int dotDmg);
         Level * getLevel();
+        Player * getPlayer();
 };
 #endif

@@ -76,6 +76,7 @@ void Creature::action(Map *map){
             if(map->getLevel()->obstacles[pY][pX] == HOT){
                 setStatus(DOT, 1000);
                 pY = (y+height)/OBSIZE+1;
+                isFall = false;
                 break;
             }
 
