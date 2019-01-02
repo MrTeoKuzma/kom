@@ -1,6 +1,6 @@
 #include "window.h"
 
-Window::Window():title("Kind of magic"), width(1408), height(792){
+Window::Window():title(TITLE), width(WINWIDTH), height(WINHEIGHT){
     window = new sf::RenderWindow(sf::VideoMode(width, height), title);
     window->setFramerateLimit(60);
 }

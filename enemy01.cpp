@@ -34,6 +34,6 @@ void Enemy01::action(Map *map){
         direction = (direction == RIGHT) ? LEFT: RIGHT; //obrni smer
     }
     //sf::err() se uporabi enako kot cout
-    sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
+    //sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
     move(direction, map->getLevel());
 }

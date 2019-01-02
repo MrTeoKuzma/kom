@@ -1,5 +1,6 @@
 #include "player.h"
 #include "creature.h"
+#include "projectile.h"
 
 Player::Player(int x, int y){
     Player::x = x;
@@ -12,6 +13,8 @@ Player::Player(int x, int y){
     skills[DASH].data[0] = 200; //dashLength
     skills[DASH].data[1] = 10; //dashStep
     skills[DASH].data[2] = 0; //current
+
+    skills[SHOOT].setCooldown(500);
 }
 
 void Player::loadImg(){
@@ -39,8 +42,12 @@ void Player::turn(int mX, int mY){
     direction = abs(deltaX) > abs(deltaY) ? (deltaX < 0) * 2 +1 : (deltaY > 0) * 2;
 }
 
-void Player::attack(int mX, int mY){
-    turn(mX, mY);    
+void Player::attack(Map * map, int mX, int mY){
+    turn(mX, mY);
+    if(skills[SHOOT].isReady()){
+        skills[SHOOT].use();
+        map->addProjectile(new Projectile(10, x, y, mX, mY, 8));
+    }
 }
 
 void Player::action(Map *map){

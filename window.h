@@ -3,6 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include "map.h"
 
+#define TITLE "Kind of magic"
+#define WINWIDTH 1408
+#define WINHEIGHT 792
+
 using namespace std;
 
 class Window{
