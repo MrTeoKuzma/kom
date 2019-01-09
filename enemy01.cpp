@@ -1,5 +1,6 @@
 #include "enemy01.h"
 #include "creature.h"
+#include "skill.h"
 
 Enemy01::Enemy01(int x, int y){
     Enemy01::direction = RIGHT;
@@ -14,15 +15,17 @@ Enemy01::Enemy01(int x, int y){
 }
 
 void Enemy01::loadImg(){
-    sprite[UP][NORMAL][NORMAL][0].loadFromFile("img/cU.png");
-    sprite[RIGHT][NORMAL][NOTHING][0].loadFromFile("img/cR.png");
-    sprite[DOWN][NORMAL][NOTHING][0].loadFromFile("img/cD.png");
-    sprite[LEFT][NORMAL][NOTHING][0].loadFromFile("img/cL.png");
-    sprite[UP][DASHING][NOTHING][0].loadFromFile("img/cU.png");
-    sprite[RIGHT][DASHING][NOTHING][0].loadFromFile("img/cR.png");
-    sprite[DOWN][DASHING][NOTHING][0].loadFromFile("img/cD.png");
-    sprite[LEFT][DASHING][NOTHING][0].loadFromFile("img/cL.png");
-
+    sf::IntRect firstOnly(128, 0, 128, 128);
+    sprite[UP][NORMAL][NOTHING][0].loadFromFile("img/enemy/schooler/mv/front.png", firstOnly);
+    sprite[RIGHT][NORMAL][NOTHING][0].loadFromFile("img/enemy/schooler/mv/right.png", firstOnly);
+    sprite[DOWN][NORMAL][NOTHING][0].loadFromFile("img/enemy/schooler/mv/back.png", firstOnly);
+    sprite[LEFT][NORMAL][NOTHING][0].loadFromFile("img/enemy/schooler/mv/left.png", firstOnly);
+ 
+    sprite[UP][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/front.png");
+    sprite[RIGHT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/right.png");
+    sprite[DOWN][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/back.png");
+    sprite[LEFT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/left.png");
+    animation = new Animation(200);
 }
 
 void Enemy01::attack(int mX, int mY){
