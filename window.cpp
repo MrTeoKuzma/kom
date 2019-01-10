@@ -310,6 +310,7 @@ void Window::changePlace(int place){
             map->loadBackground("img/bg.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
+            map->changeType(PlayerType);
             startGame();
             break;
     }
