@@ -30,7 +30,9 @@ void Enemy01::loadImg(){
     sprite[RIGHT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/right.png");
     sprite[DOWN][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/back.png");
     sprite[LEFT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/left.png");
-    animation = new Animation(200);
+    animation = new Animation(200, 4, 25, 76, 116);
+    width = 76;
+    height = 116;
 }
 
 void Enemy01::attack(Map * map, int pX, int pY){

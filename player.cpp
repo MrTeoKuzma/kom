@@ -37,7 +37,9 @@ void Player::loadImg(){
     sprite[DOWN][ATTACK][NOTHING][0].loadFromFile("img/character/"+type+"/atck/back.png");
     sprite[LEFT][ATTACK][NOTHING][0].loadFromFile("img/character/"+type+"/atck/left.png");
 
-    animation = new Animation(200);
+    animation = new Animation(200, 10, 25, 75, 105);
+    width = 75;
+    height = 105;
 }
 
 void Player::dash(){
