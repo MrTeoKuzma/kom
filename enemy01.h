@@ -4,6 +4,7 @@
 #include "skill.h"
 
 class Map;
+class Player;
 
 class Enemy01 : public Creature{
     private:
