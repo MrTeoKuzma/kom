@@ -14,9 +14,10 @@ class Player : public Creature{
     private:
         sf::Vector2i mouseCoord;
         Skill skills[4];
+        string type;
         
     public:
-        Player(int x, int y);
+        Player(int x, int y, string type);
         void loadImg();
         void dash();
         void turn(int mX, int mY);
@@ -24,5 +25,6 @@ class Player : public Creature{
         void action(Map *map);
         int getX();
         int getY();
+        void setType(string type);
 };
 #endif

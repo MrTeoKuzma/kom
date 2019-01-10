@@ -8,7 +8,7 @@
 Map::Map(string bgImage): x(0), y(0){
     image.loadFromFile(bgImage);
     background.setTexture(image, true);
-    addPlayer(new Player(500, 500));
+    addPlayer(new Player(500, 500, "earth"));
     addCreature(new Enemy01(800, 600));
 }
 

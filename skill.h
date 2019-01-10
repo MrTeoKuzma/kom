@@ -17,5 +17,6 @@ class Skill{
         void setCooldown(int cooldown);
         bool isReady();
         void use();
+        int getCooldown();
 };
 #endif
