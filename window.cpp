@@ -221,9 +221,9 @@ void Window::handleEventsArenaSelect(){
         if(pos.x>152 && pos.x<373 && pos.y>184 && pos.y<484)
             changePlace(EARTH);
 
-
-
-    }
+        if(pos.x>1037 && pos.x<1184 && pos.y>720 && pos.y<782)
+            changePlace(LOBBY);
+        }
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
         //right
