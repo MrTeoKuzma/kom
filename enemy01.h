@@ -2,7 +2,6 @@
 #define ENEMY01_H_
 #include "creature.h"
 #include "skill.h"
-#include "player.h"
 
 class Map;
 

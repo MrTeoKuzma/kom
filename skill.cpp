@@ -16,3 +16,7 @@ void Skill::use(){
     clock.restart();
     ready = false;
 }
+
+int Skill::getCooldown(){
+    return cooldown;
+}

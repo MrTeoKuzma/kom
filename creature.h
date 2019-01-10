@@ -4,6 +4,7 @@
 #include "map.h"
 #include "skill.h"
 #include "level.h"
+#include "animation.h"
 
 //direction
 #define UP 0
@@ -16,13 +17,14 @@
 #define STUN 1
 #define ATTACK 2
 #define DASHING 3
+#define RUNNING 4
 
 //status
 #define NOTHING 0
 #define DOT 1
 #define INVUNERABLE 2
 
-#define SPRITE_NUM 3
+#define SPRITE_NUM 1
 
 #define Y_DIFF(s, d) (s * !(d%2) * (d-1)) // 0 = +step, 1 = 0, 2 = -step, 3 = 0
 #define X_DIFF(s, d) (s * (d%2) * (d-2) * -1) // 0 = 0, 1 = +step, 2 = 0, 3 = -step
@@ -44,8 +46,10 @@ class Creature{
         int state;
         int status;
         Skill statusChange;
+        Skill stateChange;
         int spriteI;
-        sf::Texture sprite[4][4][3][SPRITE_NUM];
+        Animation * animation;
+        sf::Texture sprite[4][5][3][SPRITE_NUM];
 
     public:
         Creature();
@@ -53,6 +57,7 @@ class Creature{
         void init();
         void draw(sf::RenderWindow *window);
         void setStatus(int status, int duration);
+        void setState(int state, int duration);
         void canMove(int &step, Level * level);
         void move(int dir, Level * level);
         virtual void action(Map *map);
