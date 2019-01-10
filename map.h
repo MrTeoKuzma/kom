@@ -28,7 +28,7 @@ class Map{
         int y;
 
     public:
-        Map(); 
+        Map();
         void draw(sf::RenderWindow *window);
         void addCreature(Creature *creature);
         void addPlayer(Player *player);
@@ -42,6 +42,7 @@ class Map{
         void loadEarth();
 		void loadSound();
         void playSound(int i);
+        void changeType(int t);
         Level * getLevel();
         Player * getPlayer();
 };

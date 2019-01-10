@@ -3,13 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include "map.h"
 
-#define TITLE "Kind of magic"
+#define TITLE "Kind of Magic"
 #define WINWIDTH 1408
 #define WINHEIGHT 792
 
 #define LOBY 0
 #define WARDROBE 1
 #define EARTH 2
+#define AIR 3
+#define LAVA 4
+#define WATER 5
 using namespace std;
 
 class Window{
@@ -21,6 +24,7 @@ class Window{
         int height;
         Map * map;
         int place;
+        int PlayerType;
 
     public:
         Window(int place);
@@ -32,5 +36,7 @@ class Window{
         void loadMapLevel(string fileName, int dotDmg);
         Map * getMap();
         void changePlace(int place);
+        int getPlayerType();
+        void setPlayerType(int t);
 };
 #endif

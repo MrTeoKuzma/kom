@@ -15,7 +15,8 @@ class Player : public Creature{
         sf::Vector2i mouseCoord;
         Skill skills[4];
         string type;
-        
+        bool thereIsSkin[13];
+
     public:
         Player(int x, int y, string type);
         void loadImg();
@@ -26,5 +27,6 @@ class Player : public Creature{
         int getX();
         int getY();
         void setType(string type);
+        bool haveSkin(int index);
 };
 #endif

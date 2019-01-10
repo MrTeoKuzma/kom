@@ -38,11 +38,15 @@ void Window::handleEvents(){
         map->doAttackPlayer(pos.x, pos.y);
     }
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+        changePlace(WARDROBE);
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+            map->changeType(1);
         //skill 1
     }
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
+        map->changeType(2);
         //skill 2
     }
 
@@ -65,9 +69,9 @@ void Window::handleEvents(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
         //skill 7
     }
-    
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-        changePlace(WARDROBE);
+
         //right
     }
 }
@@ -78,42 +82,45 @@ void Window::handleEventsWardrobe(){
         if (event.type == sf::Event::Closed)
             window->close();
     }
-
+    //IZHOD IZ MENIJA
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
         changePlace(EARTH);
     }
 
+    //ZA DEJANSKE OBLEKE
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
         sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
         if(pos.x>321 && pos.x<449 && pos.y>169 && pos.y<297)
-            sf::err()<<"FIRE 1\n";
+            PlayerType=1;
         if(pos.x>467 && pos.x<599 && pos.y>169 && pos.y<297)
-            sf::err()<<"WATER 2\n";
+            PlayerType=2;
         if(pos.x>617 && pos.x<746 && pos.y>169 && pos.y<297)
-            sf::err()<<"AIR 3\n";
+            PlayerType=3;
         if(pos.x>766 && pos.x<893 && pos.y>169 && pos.y<297)
-            sf::err()<<"EARTH 4\n";
+            PlayerType=4;
 
         if(pos.x>321 && pos.x<449 && pos.y>316 && pos.y<446)
-            sf::err()<<"LIGHTNING 5\n";
+            PlayerType=5;
         if(pos.x>467 && pos.x<599 && pos.y>316 && pos.y<446)
-            sf::err()<<"LAVA 6\n";
+            PlayerType=6;
         if(pos.x>617 && pos.x<746 && pos.y>316 && pos.y<446)
-            sf::err()<<"STORM 7\n";
+            PlayerType=7;
         if(pos.x>766 && pos.x<893 && pos.y>316 && pos.y<446)
-            sf::err()<<"ICE 8\n";
+            PlayerType=8;
         if(pos.x>912 && pos.x<1043 && pos.y>316 && pos.y<446)
-            sf::err()<<"STANDARD 0\n";
+            PlayerType=0;
 
         if(pos.x>321 && pos.x<449 && pos.y>464 && pos.y<594)
-            sf::err()<<"Light 9\n";
+            PlayerType=9;
         if(pos.x>467 && pos.x<599 && pos.y>464 && pos.y<594)
-            sf::err()<<"DARK 10\n";
+            PlayerType=10;
         if(pos.x>617 && pos.x<746 && pos.y>464 && pos.y<594)
-            sf::err()<<"PSI 11\n";
+            PlayerType=11;
         if(pos.x>766 && pos.x<893 && pos.y>464 && pos.y<594)
-            sf::err()<<"VAKUUM 12\n";
+            PlayerType=12;
+        if(pos.x>1170 && pos.x<1320 && pos.y>640 && pos.y<702)
+            changePlace(EARTH);
 
     }
 
@@ -150,7 +157,14 @@ Map * Window::getMap(){
 void Window::loadMapLevel(string fileName, int dotDmg){
     map->loadLevel(fileName, dotDmg);
 }
-
+int Window::getPlayerType()
+{
+    return PlayerType;
+}
+void Window::setPlayerType(int t)
+{
+    PlayerType=t;
+}
 void Window::changePlace(int place){
 
     switch(place){
@@ -168,6 +182,8 @@ void Window::changePlace(int place){
             map->loadBackground("img/bg.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
+
+            map->changeType(PlayerType);
             startGame();
             break;
     }

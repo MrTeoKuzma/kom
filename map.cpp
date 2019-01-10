@@ -78,7 +78,7 @@ Player * Map::getPlayer(){
     return player;
 }
 void Map::loadSound() {
-    
+
     sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
     sounds[KUPLJENOSHOPSOUND] = new Sound("Zvocni efekti/Akcije/Kupljeno_shop.wav");
     sounds[POBIRANJECOINOVSOUND] = new Sound("Zvocni efekti/Akcije/Pobiranje_coinov.wav");
@@ -107,4 +107,66 @@ void Map::loadSound() {
 
 void Map::playSound(int i){
     sounds[i]->play();
+}
+void Map::changeType(int t) // spremeni tip skina
+{
+
+    if (player->haveSkin(t)) // ce ima dolocan skil
+    {
+        switch (t)
+        {
+            case 0:
+            player->setType("standard");
+            break;
+
+            case 1:
+            player->setType("fire");
+            break;
+
+            case 2:
+            player->setType("water");
+            break;
+
+            case 3:
+            player->setType("air");
+            break;
+
+            case 4:
+            player->setType("earth");
+            break;
+
+            case 5:
+            player->setType("lightning");
+            break;
+
+            case 6:
+            player->setType("lava");
+            break;
+
+            case 7:
+            player->setType("storm");
+            break;
+
+            case 8:
+            player->setType("ice");
+            break;
+
+            case 9:
+            player->setType("light");
+            break;
+
+            case 10:
+            player->setType("dark");
+            break;
+
+            case 11:
+            player->setType("psi");
+            break;
+
+            case 12:
+            player->setType("vakuum");
+            break;
+        }
+        player->loadImg();
+    }
 }

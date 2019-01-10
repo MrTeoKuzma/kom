@@ -18,7 +18,7 @@ Player::Player(int x, int y, string type){
     skills[SHOOT].setCooldown(500);
 }
 
-void Player::loadImg(){ 
+void Player::loadImg(){
     sf::IntRect firstOnly(0, 0, 128, 128);
     sprite[UP][NORMAL][NOTHING][0].loadFromFile("img/character/"+type+"/mv/front.png", firstOnly);
     sprite[RIGHT][NORMAL][NOTHING][0].loadFromFile("img/character/"+type+"/mv/right.png", firstOnly);
@@ -89,3 +89,8 @@ int Player::getY(){
 void Player::setType(string type){
     Player::type = type;
 }
+bool Player::haveSkin(int index) // preveri ce imamo skin
+{
+    return Player::thereIsSkin[index];
+}
+
