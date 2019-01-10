@@ -1,6 +1,7 @@
 #include "enemy01.h"
 #include "creature.h"
 #include "skill.h"
+#include "player.h"
 
 Enemy01::Enemy01(int x, int y){
     Enemy01::direction = RIGHT;
@@ -37,6 +38,6 @@ void Enemy01::action(Map *map){
         direction = (direction == RIGHT) ? LEFT: RIGHT; //obrni smer
     }
     //sf::err() se uporabi enako kot cout
-    //sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
+    sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
     move(direction, map->getLevel());
 }
