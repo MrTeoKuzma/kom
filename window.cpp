@@ -76,6 +76,10 @@ void Window::handleEvents(){
     }
 }
 void Window::handleEventsLobby(){
+
+    int px=map->getPlayer()->getX();
+    int py=map->getPlayer()->getY();
+
     while (window->pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
@@ -98,12 +102,15 @@ void Window::handleEventsLobby(){
         map->movePlayer(DOWN);
     }
 
+    if(px<571 && px>99 && py<390 && py>342 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        changePlace(ARENASELECT);
+    }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         map->dashPlayer();
     }
-
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
+        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
         map->doAttackPlayer(pos.x, pos.y);
     }
 
@@ -197,6 +204,32 @@ void Window::handleEventsWardrobe(){
     }
 }
 
+void Window::handleEventsArenaSelect(){
+    while (window->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window->close();
+    }
+    //IZHOD IZ MENIJA
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+        changePlace(LOBBY);
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
+        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
+        if(pos.x>152 && pos.x<373 && pos.y>184 && pos.y<484)
+            changePlace(EARTH);
+
+
+
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+        //right
+    }
+}
+
 void Window::startGame(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
@@ -214,6 +247,14 @@ void Window::startWardrobe(){
     }
 }
 
+void Window::startArenaSelect(){
+    while (window->isOpen()){
+        window->clear(sf::Color::Black);
+        handleEventsArenaSelect();
+        map->draw(window);
+        window->display();
+    }
+}
 void Window::startLobby(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
@@ -259,7 +300,11 @@ void Window::changePlace(int place){
             map->loadBackground("img/bg/wardrobe.png");
             startWardrobe();
             break;
-
+        case ARENASELECT:
+            map=new Map();
+            map->loadBackground("img/bg/arenaselect.png");
+            startArenaSelect();
+            break;
         case EARTH:
             map = new Map();
             map->loadBackground("img/bg.png");

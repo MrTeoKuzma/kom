@@ -2,6 +2,7 @@
 #define WINDOW_H_
 #include <SFML/Graphics.hpp>
 #include "map.h"
+#include "player.h"
 
 #define TITLE "Kind of Magic"
 #define WINWIDTH 1408
@@ -13,6 +14,7 @@
 #define AIR 3
 #define LAVA 4
 #define WATER 5
+#define ARENASELECT 6
 using namespace std;
 
 class Window{
@@ -33,6 +35,8 @@ class Window{
         void handleEventsLobby();
         void startGame();
         void startWardrobe();
+        void startArenaSelect();
+        void handleEventsArenaSelect();
         void startLobby();
         void loadMapImg(string image);
         void loadMapLevel(string fileName, int dotDmg);
