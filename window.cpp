@@ -75,7 +75,75 @@ void Window::handleEvents(){
         //right
     }
 }
+void Window::handleEventsLobby(){
+    while (window->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window->close();
+    }
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+        map->movePlayer(LEFT);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        map->movePlayer(RIGHT);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+        map->movePlayer(UP);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+        map->movePlayer(DOWN);
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        map->dashPlayer();
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
+        map->doAttackPlayer(pos.x, pos.y);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
+        changePlace(WARDROBE);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+            map->changeType(1);
+        //skill 1
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
+        map->changeType(2);
+        //skill 2
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)){
+        //skill 3
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+        //skill 4
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+        //skill 5
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+        //skill 6
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+        //skill 7
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+
+        //right
+    }
+}
 void Window::handleEventsWardrobe(){
     while (window->pollEvent(event))
     {
@@ -84,13 +152,13 @@ void Window::handleEventsWardrobe(){
     }
     //IZHOD IZ MENIJA
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-        changePlace(EARTH);
+        changePlace(LOBBY);
     }
 
     //ZA DEJANSKE OBLEKE
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
-        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
+        //sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
         if(pos.x>321 && pos.x<449 && pos.y>169 && pos.y<297)
             PlayerType=1;
         if(pos.x>467 && pos.x<599 && pos.y>169 && pos.y<297)
@@ -120,7 +188,7 @@ void Window::handleEventsWardrobe(){
         if(pos.x>766 && pos.x<893 && pos.y>464 && pos.y<594)
             PlayerType=12;
         if(pos.x>1170 && pos.x<1320 && pos.y>640 && pos.y<702)
-            changePlace(EARTH);
+            changePlace(LOBBY);
 
     }
 
@@ -141,6 +209,15 @@ void Window::startWardrobe(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
         handleEventsWardrobe();
+        map->draw(window);
+        window->display();
+    }
+}
+
+void Window::startLobby(){
+    while (window->isOpen()){
+        window->clear(sf::Color::Black);
+        handleEventsLobby();
         map->draw(window);
         window->display();
     }
@@ -168,7 +245,13 @@ void Window::setPlayerType(int t)
 void Window::changePlace(int place){
 
     switch(place){
-        case LOBY:
+        case LOBBY:
+            map=new Map();
+            map->loadBackground("img/arena/lobby.png");
+            loadMapLevel("levels/level01", 60);
+            map->loadLobby();
+            startLobby();
+            map->changeType(PlayerType);
             break;
 
         case WARDROBE:
@@ -182,8 +265,6 @@ void Window::changePlace(int place){
             map->loadBackground("img/bg.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
-
-            map->changeType(PlayerType);
             startGame();
             break;
     }

@@ -7,7 +7,7 @@
 #define WINWIDTH 1408
 #define WINHEIGHT 792
 
-#define LOBY 0
+#define LOBBY 0
 #define WARDROBE 1
 #define EARTH 2
 #define AIR 3
@@ -30,8 +30,10 @@ class Window{
         Window(int place);
         void handleEvents();
         void handleEventsWardrobe();
+        void handleEventsLobby();
         void startGame();
         void startWardrobe();
+        void startLobby();
         void loadMapImg(string image);
         void loadMapLevel(string fileName, int dotDmg);
         Map * getMap();

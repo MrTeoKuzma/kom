@@ -40,6 +40,7 @@ class Map{
         void loadLevel(string fileName, int dotDmg);
         void loadBackground(string bgImage);
         void loadEarth();
+        void loadLobby();
 		void loadSound();
         void playSound(int i);
         void changeType(int t);

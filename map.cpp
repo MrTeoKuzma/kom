@@ -70,6 +70,9 @@ void Map::loadEarth(){
     addCreature(new Enemy01(800, 600));
 }
 
+void Map::loadLobby(){
+   addPlayer(new Player(500, 500, "earth"));
+}
 Level * Map::getLevel(){
     return level;
 }
