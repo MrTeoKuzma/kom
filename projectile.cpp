@@ -1,6 +1,6 @@
 #include "projectile.h"
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include "map.h"
 #include "window.h"
 
