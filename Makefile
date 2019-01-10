@@ -1,5 +1,5 @@
 # tukaj napisite seznam izvornih datotek, samo .c dokumente
-SOURCE_FILE_LIST = main.cpp creature.cpp window.cpp map.cpp player.cpp skill.cpp level.cpp enemy01.cpp projectile.cpp animation.cpp
+SOURCE_FILE_LIST = main.cpp creature.cpp window.cpp map.cpp player.cpp skill.cpp level.cpp enemy01.cpp projectile.cpp animation.cpp sound.cpp
 # tukaj napisite zeljeno ime programa
 TARGET = kom
 
@@ -9,7 +9,7 @@ TARGET = kom
 CC = g++
 
 # tukaj bomo kasneje vnesli dodatne knjiznice
-LIBRARIES = -lsfml-graphics -lsfml-window -lsfml-system
+LIBRARIES = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 CFLAGS = -Wall
 

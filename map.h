@@ -6,6 +6,7 @@
 #include "creature.h"
 #include "level.h"
 #include "projectile.h"
+#include "sound.h"
 #include <SFML/Audio.hpp>
 
 using namespace std;
@@ -18,11 +19,10 @@ class Map{
     private:
         sf::Texture image;
         sf::Sprite background;
-		sf::SoundBuffer buffer[40];
-        sf::Sound sound;
         vector <Creature *> creatures;
         vector <Projectile *> projectiles;
         Player *player;
+        Sound *sounds[40];
         Level *level;
         int x;
         int y;
