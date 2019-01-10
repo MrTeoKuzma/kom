@@ -7,6 +7,9 @@
 #define WINWIDTH 1408
 #define WINHEIGHT 792
 
+#define LOBY 0
+#define WARDROBE 1
+#define EARTH 2
 using namespace std;
 
 class Window{
@@ -17,8 +20,10 @@ class Window{
         int width;
         int height;
         Map * map;
+        int place;
+
     public:
-        Window();
+        Window(int place);
         void handleEvents();
         void handleEventsWardrobe();
         void startGame();
@@ -26,5 +31,6 @@ class Window{
         void loadMapImg(string image);
         void loadMapLevel(string fileName, int dotDmg);
         Map * getMap();
+        void changePlace(int place);
 };
 #endif

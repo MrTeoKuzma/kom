@@ -5,11 +5,7 @@
 #include "projectile.h"
 #include <algorithm>
 
-Map::Map(string bgImage): x(0), y(0){
-    image.loadFromFile(bgImage);
-    background.setTexture(image, true);
-    addPlayer(new Player(500, 500, "earth"));
-    addCreature(new Enemy01(800, 600));
+Map::Map(): x(0), y(0){
 }
 
 void Map::draw(sf::RenderWindow *window){
@@ -58,6 +54,16 @@ void Map::doAttackPlayer(int mX, int mY){
 
 void Map::loadLevel(string fileName, int dotDmg){
     level = new Level(fileName, dotDmg);
+}
+
+void Map::loadBackground(string bgImage){
+    image.loadFromFile(bgImage);
+    background.setTexture(image, true);
+}
+
+void Map::loadEarth(){
+    addPlayer(new Player(500, 500, "earth"));
+    addCreature(new Enemy01(800, 600));
 }
 
 Level * Map::getLevel(){

@@ -1,8 +1,9 @@
 #include "window.h"
 
-Window::Window():title(TITLE), width(WINWIDTH), height(WINHEIGHT){
+Window::Window(int place):title(TITLE), width(WINWIDTH), height(WINHEIGHT), place(place){
     window = new sf::RenderWindow(sf::VideoMode(width, height), title);
     window->setFramerateLimit(60);
+    changePlace(place);
 }
 
 void Window::handleEvents(){
@@ -37,10 +38,6 @@ void Window::handleEvents(){
         map->doAttackPlayer(pos.x, pos.y);
     }
 
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
-        //right
-    }
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
         //skill 1
     }
@@ -68,6 +65,11 @@ void Window::handleEvents(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
         //skill 7
     }
+    
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+        changePlace(WARDROBE);
+        //right
+    }
 }
 
 void Window::handleEventsWardrobe(){
@@ -78,8 +80,9 @@ void Window::handleEventsWardrobe(){
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-
+        changePlace(EARTH);
     }
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
         sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
@@ -137,7 +140,7 @@ void Window::startWardrobe(){
 }
 
 void Window::loadMapImg(string image){
-    map = new Map(image);
+   // map = new Map(image);
 }
 
 Map * Window::getMap(){
@@ -146,4 +149,26 @@ Map * Window::getMap(){
 
 void Window::loadMapLevel(string fileName, int dotDmg){
     map->loadLevel(fileName, dotDmg);
+}
+
+void Window::changePlace(int place){
+
+    switch(place){
+        case LOBY:
+            break;
+
+        case WARDROBE:
+            map = new Map();
+            map->loadBackground("img/bg/wardrobe.png");
+            startWardrobe();
+            break;
+
+        case EARTH:
+            map = new Map();
+            map->loadBackground("img/bg.png");
+            loadMapLevel("levels/level01", 60);
+            map->loadEarth();
+            startGame();
+            break;
+    }
 }

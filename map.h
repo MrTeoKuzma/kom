@@ -25,7 +25,7 @@ class Map{
         int y;
 
     public:
-        Map(string bgImage); 
+        Map(); 
         void draw(sf::RenderWindow *window);
         void addCreature(Creature *creature);
         void addPlayer(Player *player);
@@ -35,6 +35,8 @@ class Map{
         void dashPlayer();
         void doAttackPlayer(int mX, int mY);
         void loadLevel(string fileName, int dotDmg);
+        void loadBackground(string bgImage);
+        void loadEarth();
         Level * getLevel();
         Player * getPlayer();
 };
