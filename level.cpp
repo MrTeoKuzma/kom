@@ -5,7 +5,7 @@ Level::Level(string fileName, int dotDmg): dotDmg(dotDmg){
 }
 
 void Level::readFile(string fileName){
-    ifstream file(fileName);
+    ifstream file(fileName.c_str());
     int i = 0;
     string line;
     if(file.is_open()){
