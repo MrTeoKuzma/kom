@@ -48,6 +48,7 @@ void Map::movePlayer(int dir){
 }
 
 void Map::dashPlayer(){
+    playSound(DASHSOUND);
     player->dash();
 }
 
@@ -77,35 +78,33 @@ Player * Map::getPlayer(){
     return player;
 }
 void Map::loadSound() {
-    buffer[DASHSOUND].loadFromFile("Zvocni efekti/Akcije/Dash.wav");
-    buffer[KUPLJENOSHOPSOUND].loadFromFile("Zvocni efekti/Akcije/Kupljeno_shop.wav");
-    buffer[POBIRANJECOINOVSOUND].loadFromFile("Zvocni efekti/Akcije/Pobiranje_coinov.wav");
-    buffer[HOJAPOTRAVISOUND].loadFromFile("Zvocni efekti/Hoja/HojaPoTravi.wav");
-    buffer[HOJAPOMOKREMPESKUSOUND].loadFromFile("Zvocni efekti/Hoja/HojaPoMokremPesku.wav");
-    buffer[HOJAPOKAMENJUSOUND].loadFromFile("Zvocni efekti/Hoja/HojaPoKamenju.wav");
-    buffer[LEDSOUND].loadFromFile("Zvocni efekti/Napad/Led.wav");
-    buffer[NALAGANJESTRELESOUND].loadFromFile("Zvocni efekti/Napad/Nalaganje strele.wav");
-    buffer[NEVIHTASOUND].loadFromFile("Zvocni efekti/Napad/Nevihta.wav");
-    buffer[OGENJSOUND].loadFromFile("Zvocni efekti/Napad/Ogenj.wav");
-    buffer[PSIHOKINEZASOUND].loadFromFile("Zvocni efekti/Napad/Psihokineza.wav");
-    buffer[TEMASOUND].loadFromFile("Zvocni efekti/Napad/Tema.wav");
-    buffer[UDARSTRELESOUND].loadFromFile("Zvocni efekti/Napad/Udar_strele.wav");
-    buffer[VETERSOUND].loadFromFile("Zvocni efekti/Napad/Veter.wav");
-    buffer[VODASOUND].loadFromFile("Zvocni efekti/Napad/Voda.wav");
-    buffer[PREJEMUDARCASOUND].loadFromFile("Zvocni efekti/Prejem_udarca/Prejem_udarca.wav");
-    buffer[PRIKAZNASPROTNIKA01SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika001.wav");
-    buffer[PRIKAZNASPROTNIKA02SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika002.wav");
-    buffer[PRIKAZNASPROTNIKA03SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika003.wav");
-    buffer[PRIKAZNASPROTNIKA04SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika004.wav");
-    buffer[PRIKAZNASPROTNIKA05SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika005.wav");
-    buffer[PRIKAZNASPROTNIKA06SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika006.wav");
-    buffer[PRIKAZNASPROTNIKA07SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika007.wav");
-    buffer[PRIKAZNASPROTNIKA08SOUND].loadFromFile("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika008.wav");
-    //sound.setBuffer(buffer[DASHSOUND]);
+    
+    sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
+    sounds[KUPLJENOSHOPSOUND] = new Sound("Zvocni efekti/Akcije/Kupljeno_shop.wav");
+    sounds[POBIRANJECOINOVSOUND] = new Sound("Zvocni efekti/Akcije/Pobiranje_coinov.wav");
+    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+    sounds[HOJAPOMOKREMPESKUSOUND] = new Sound("Zvocni efekti/Hoja/HojaPoMokremPesku.wav");
+    sounds[HOJAPOKAMENJUSOUND] = new Sound("Zvocni efekti/Hoja/HojaPoKamenju.wav");
+    sounds[LEDSOUND] = new Sound("Zvocni efekti/Napad/Led.wav");
+    sounds[NALAGANJESTRELESOUND] = new Sound("Zvocni efekti/Napad/Nalaganje strele.wav");
+    sounds[NEVIHTASOUND] = new Sound("Zvocni efekti/Napad/Nevihta.wav");
+    sounds[OGENJSOUND] = new Sound("Zvocni efekti/Napad/Ogenj.wav");
+    sounds[PSIHOKINEZASOUND] = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
+    sounds[TEMASOUND] = new Sound("Zvocni efekti/Napad/Tema.wav");
+    sounds[UDARSTRELESOUND] = new Sound("Zvocni efekti/Napad/Udar_strele.wav");
+    sounds[VETERSOUND] = new Sound("Zvocni efekti/Napad/Veter.wav");
+    sounds[VODASOUND] = new Sound("Zvocni efekti/Napad/Voda.wav");
+    sounds[PREJEMUDARCASOUND] = new Sound("Zvocni efekti/Prejem_udarca/Prejem_udarca.wav");
+    sounds[PRIKAZNASPROTNIKA01SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika001.wav");
+    sounds[PRIKAZNASPROTNIKA02SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika002.wav");
+    sounds[PRIKAZNASPROTNIKA03SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika003.wav");
+    sounds[PRIKAZNASPROTNIKA04SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika004.wav");
+    sounds[PRIKAZNASPROTNIKA05SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika005.wav");
+    sounds[PRIKAZNASPROTNIKA06SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika006.wav");
+    sounds[PRIKAZNASPROTNIKA07SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika007.wav");
+    sounds[PRIKAZNASPROTNIKA08SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika008.wav");
 }
 
 void Map::playSound(int i){
-    sf::Sound *tmp = new sf::Sound();
-    tmp->setBuffer(buffer[i]);
-    tmp->play();
+    sounds[i]->play();
 }
