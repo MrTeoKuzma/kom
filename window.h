@@ -18,9 +18,11 @@ class Window{
         int height;
         Map * map;
     public:
-        Window(); 
+        Window();
         void handleEvents();
+        void handleEventsWardrobe();
         void startGame();
+        void startWardrobe();
         void loadMapImg(string image);
         void loadMapLevel(string fileName, int dotDmg);
         Map * getMap();
