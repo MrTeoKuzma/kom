@@ -6,16 +6,23 @@
 class Map;
 class Player;
 
+#define SHOOT_E 0
+
 class Enemy01 : public Creature{
     private:
-        Skill skills[4];
+        Skill skills[1];
         int startX;
         int endX;
-        
+        int startY;
+        int endY;
+        bool tick;
+        Skill movement;
+
+
     public:
         Enemy01(int x, int y);
         void loadImg();
-        void attack(int mX, int mY);
+        void attack(Map * map, int pX, int pY);
         void action(Map *map);
 };
 #endif
