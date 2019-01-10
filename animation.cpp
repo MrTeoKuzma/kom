@@ -18,7 +18,5 @@ void Animation::setSprite(sf::Sprite &sprite){
         currentSprite.width = v.x/(v.x/v.y);
         currentSprite.height = v.y;
         sprite.setTextureRect(currentSprite);
-
-
     }
 }

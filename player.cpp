@@ -58,7 +58,7 @@ void Player::attack(Map * map, int mX, int mY){
     if(skills[SHOOT].isReady()){
         setState(ATTACK, 800);
         skills[SHOOT].use();
-        map->addProjectile(new Projectile(10, x, y, mX, mY, 8));
+        map->addProjectile(new Projectile(10, x, y, mX, mY, 8, "1lvl/water/1lvl_water.png"));
     }
 }
 

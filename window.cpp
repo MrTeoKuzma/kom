@@ -47,8 +47,8 @@ void Window::handleEvents(){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
         //skill 2
-    } 
-    
+    }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)){
         //skill 3
     }
@@ -56,7 +56,7 @@ void Window::handleEvents(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
         //skill 4
     }
- 
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
         //skill 5
     }
@@ -66,7 +66,56 @@ void Window::handleEvents(){
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
-        //skill 7   
+        //skill 7
+    }
+}
+
+void Window::handleEventsWardrobe(){
+    while (window->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window->close();
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+
+    }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
+        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
+        if(pos.x>321 && pos.x<449 && pos.y>169 && pos.y<297)
+            sf::err()<<"FIRE 1\n";
+        if(pos.x>467 && pos.x<599 && pos.y>169 && pos.y<297)
+            sf::err()<<"WATER 2\n";
+        if(pos.x>617 && pos.x<746 && pos.y>169 && pos.y<297)
+            sf::err()<<"AIR 3\n";
+        if(pos.x>766 && pos.x<893 && pos.y>169 && pos.y<297)
+            sf::err()<<"EARTH 4\n";
+
+        if(pos.x>321 && pos.x<449 && pos.y>316 && pos.y<446)
+            sf::err()<<"LIGHTNING 5\n";
+        if(pos.x>467 && pos.x<599 && pos.y>316 && pos.y<446)
+            sf::err()<<"LAVA 6\n";
+        if(pos.x>617 && pos.x<746 && pos.y>316 && pos.y<446)
+            sf::err()<<"STORM 7\n";
+        if(pos.x>766 && pos.x<893 && pos.y>316 && pos.y<446)
+            sf::err()<<"ICE 8\n";
+        if(pos.x>912 && pos.x<1043 && pos.y>316 && pos.y<446)
+            sf::err()<<"STANDARD 0\n";
+
+        if(pos.x>321 && pos.x<449 && pos.y>464 && pos.y<594)
+            sf::err()<<"Light 9\n";
+        if(pos.x>467 && pos.x<599 && pos.y>464 && pos.y<594)
+            sf::err()<<"DARK 10\n";
+        if(pos.x>617 && pos.x<746 && pos.y>464 && pos.y<594)
+            sf::err()<<"PSI 11\n";
+        if(pos.x>766 && pos.x<893 && pos.y>464 && pos.y<594)
+            sf::err()<<"VAKUUM 12\n";
+
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
+        //right
     }
 }
 
@@ -74,6 +123,14 @@ void Window::startGame(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
         handleEvents();
+        map->draw(window);
+        window->display();
+    }
+}
+void Window::startWardrobe(){
+    while (window->isOpen()){
+        window->clear(sf::Color::Black);
+        handleEventsWardrobe();
         map->draw(window);
         window->display();
     }

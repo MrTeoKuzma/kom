@@ -21,8 +21,8 @@ void Map::draw(sf::RenderWindow *window){
     }
 
     for(i = 0; i < projectiles.size(); i++){
-        (projectiles[i])->action(this);
         (projectiles[i])->draw(window);
+        (projectiles[i])->action(this);
     }
 }
 
