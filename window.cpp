@@ -250,8 +250,8 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/lobby.png");
             loadMapLevel("levels/level01", 60);
             map->loadLobby();
-            startLobby();
             map->changeType(PlayerType);
+            startLobby();
             break;
 
         case WARDROBE:
