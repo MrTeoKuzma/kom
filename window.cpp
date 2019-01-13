@@ -221,6 +221,15 @@ void Window::handleEventsArenaSelect(){
         if(pos.x>152 && pos.x<373 && pos.y>184 && pos.y<484)
             changePlace(EARTH);
 
+        if(pos.x>424 && pos.x<637 && pos.y>192 && pos.y<484)
+            changePlace(FIRE);
+
+        if(pos.x>701 && pos.x<920 && pos.y>192 && pos.y<484)
+            changePlace(WATER);
+
+        if(pos.x>982 && pos.x<1199 && pos.y>192 && pos.y<484)
+            changePlace(AIR);
+
         if(pos.x>1037 && pos.x<1184 && pos.y>720 && pos.y<782)
             changePlace(LOBBY);
         }
@@ -307,7 +316,31 @@ void Window::changePlace(int place){
             break;
         case EARTH:
             map = new Map();
-            map->loadBackground("img/bg.png");
+            map->loadBackground("img/arena/earth_BG.png");
+            loadMapLevel("levels/level01", 60);
+            map->loadEarth();
+            map->changeType(PlayerType);
+            startGame();
+            break;
+        case FIRE:
+            map = new Map();
+            map->loadBackground("img/arena/lav_BG.png");
+            loadMapLevel("levels/level01", 60);
+            map->loadEarth();
+            map->changeType(PlayerType);
+            startGame();
+            break;
+        case WATER:
+            map = new Map();
+            map->loadBackground("img/arena/water_BG.png");
+            loadMapLevel("levels/level01", 60);
+            map->loadEarth();
+            map->changeType(PlayerType);
+            startGame();
+            break;
+        case AIR:
+            map = new Map();
+            map->loadBackground("img/arena/air_BG.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);

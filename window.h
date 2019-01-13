@@ -12,7 +12,7 @@
 #define WARDROBE 1
 #define EARTH 2
 #define AIR 3
-#define LAVA 4
+#define FIRE 4
 #define WATER 5
 #define ARENASELECT 6
 using namespace std;
