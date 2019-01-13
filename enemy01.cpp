@@ -14,7 +14,7 @@ Enemy01::Enemy01(int x, int y){
     Enemy01::endX = x+100;
     Enemy01::tick=true;
 
-    skills[SHOOT_E].setCooldown(500);
+    skills[SHOOT_E].setCooldown(600);
     movement.setCooldown(300);
     loadImg();
 }
@@ -39,7 +39,7 @@ void Enemy01::attack(Map * map, int pX, int pY){
     if(skills[SHOOT_E].isReady()){
         setState(ATTACK, 800);
         skills[SHOOT_E].use();
-        map->addProjectile(new Projectile(10, x, y, pX, pY, 8, "1lvl/water/1lvl_water.png"));
+        map->addProjectile(new Projectile(10, x, y, pX, pY, 6, "1lvl/fire/1lvl_fire.png"));
     }
 }
 

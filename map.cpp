@@ -66,8 +66,10 @@ void Map::loadBackground(string bgImage){
 }
 
 void Map::loadEarth(){
-    addPlayer(new Player(500, 500, "earth"));
     addCreature(new Enemy01(800, 600));
+    addCreature(new Enemy01(900, 400));
+    addCreature(new Enemy01(500, 300));
+     addPlayer(new Player(500, 500, "earth"));
 }
 
 void Map::loadLobby(){
