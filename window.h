@@ -16,6 +16,7 @@
 #define WATER 5
 #define ARENASELECT 6
 #define WELCOME 7
+#define DEAD 8
 using namespace std;
 
 class Window{
