@@ -7,11 +7,12 @@
 #include <SFML/Audio.hpp>
 
 Map::Map(): x(0), y(0), playerStatusBar(0){
-    loadSound();
+    setBGsound = -1;
 }
 
 void Map::draw(sf::RenderWindow *window){
     window->draw(background);
+    playSound(setBGsound);
     if(playerStatusBar){
         player->drawHp(window);
     }
@@ -80,6 +81,8 @@ void Map::loadForeground(string fgImage){
 
 void Map::loadEarth(){
     setPlayerStatusBar(true);
+    loadEarthSound();
+    setBackgroundSound(GLASBA008SOUND);
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
@@ -87,6 +90,8 @@ void Map::loadEarth(){
 }
 
 void Map::loadLobby(){
+    loadLobbySound();
+    setBackgroundSound(GLASBA006SOUND);
     addPlayer(new Player(500, 500, "earth"));
 }
 Level * Map::getLevel(){
@@ -106,7 +111,7 @@ int Map::isProjectileHit(sf::IntRect * obj, int category){
     }
     return 0;
 }
-
+/*
 void Map::loadSound() {
 
     sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
@@ -134,10 +139,32 @@ void Map::loadSound() {
     sounds[PRIKAZNASPROTNIKA07SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika007.wav");
     sounds[PRIKAZNASPROTNIKA08SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika008.wav");
 }
+*/
+void Map::loadLobbySound(){
+    sounds[GLASBA006SOUND] = new Sound("Glasba/sestaglasba.wav");
+    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+}
+void Map::loadEarthSound(){
+    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+    sounds[GLASBA008SOUND] = new Sound("Glasba/osmaglasba.wav");
+    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+    sounds[PSIHOKINEZASOUND] = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
+    sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
+}
+
 
 void Map::playSound(int i){
-    sounds[i]->play();
+    if(i>=0)
+    {
+        sounds[i]->play();
+    }
+
 }
+void Map::setBackgroundSound(int i){
+    setBGsound = i;
+}
+
+
 void Map::changeType(int t) // spremeni tip skina
 {
 

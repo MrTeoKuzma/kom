@@ -30,6 +30,7 @@ class Map{
         int y;
         bool playerStatusBar;
         int place;
+        int setBGsound;
 
     public:
         Map();
@@ -56,5 +57,10 @@ class Map{
         void setPlayerStatusBar(bool status);
         void action(int &place);
         void setPlace(int place);
+
+        void loadLobbySound();
+        void loadEarthSound();
+
+        void setBackgroundSound(int i);
 };
 #endif
