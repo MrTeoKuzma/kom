@@ -28,5 +28,7 @@ class Player : public Creature{
         int getY();
         void setType(string type);
         bool haveSkin(int index);
+        void die(Map *map);
+        void drawHp(sf::RenderWindow * window);
 };
 #endif

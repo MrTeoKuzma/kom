@@ -24,5 +24,6 @@ class Enemy01 : public Creature{
         void loadImg();
         void attack(Map * map, int pX, int pY);
         void action(Map *map);
+        void die(Map * map);
 };
 #endif

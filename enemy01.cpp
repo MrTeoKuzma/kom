@@ -7,12 +7,20 @@ Enemy01::Enemy01(int x, int y){
     Enemy01::direction = LEFT;
     Enemy01::x = x;
     Enemy01::y = y;
-    Enemy01::width = 128;
-    Enemy01::height = 128;
+    left = 25;
+    top = 4;
+    hitbox.width = 76;
+    hitbox.height = 116;
+    hitbox.left = x + left;
+    hitbox.top = y + top;
+    Enemy01::width = hitbox.width;;
+    Enemy01::height = hitbox.height;
     Enemy01::step = 4;
     Enemy01::startX = x;
     Enemy01::endX = x+100;
     Enemy01::tick=true;
+    Enemy01::hp = 100;
+    Enemy01::category = ENEMY;
 
     skills[SHOOT_E].setCooldown(600);
     movement.setCooldown(300);
@@ -30,16 +38,14 @@ void Enemy01::loadImg(){
     sprite[RIGHT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/right.png");
     sprite[DOWN][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/back.png");
     sprite[LEFT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/left.png");
-    animation = new Animation(200, 4, 25, 76, 116);
-    width = 76;
-    height = 116;
+    animation = new Animation(200, top, left, hitbox.width, hitbox.height);
 }
 
 void Enemy01::attack(Map * map, int pX, int pY){
     if(skills[SHOOT_E].isReady()){
         setState(ATTACK, 800);
         skills[SHOOT_E].use();
-        map->addProjectile(new Projectile(10, x, y, pX, pY, 6, "1lvl/fire/1lvl_fire.png"));
+        map->addProjectile(new Projectile(10, x, y, pX, pY, 6, "1lvl/fire/1lvl_fire.png", PLAYER));
     }
 }
 
@@ -71,4 +77,8 @@ void Enemy01::action(Map *map){
     //sf::err() se uporabi enako kot cout
     //sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
     move(direction, map->getLevel());
+}
+
+void Enemy01::die(Map * map){
+    map->removeCreature(this);   
 }

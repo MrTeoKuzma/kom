@@ -72,11 +72,15 @@ class Creature{
         int direction;
         int state;
         int status;
+        int left;
+        int top;
+        sf::IntRect hitbox;
         Skill statusChange;
         Skill stateChange;
         int spriteI;
         Animation * animation;
         sf::Texture sprite[4][5][3][SPRITE_NUM];
+        int category;
 
     public:
         Creature();
@@ -87,7 +91,9 @@ class Creature{
         void setState(int state, int duration);
         void canMove(int &step, Level * level);
         void move(int dir, Level * level);
+        bool isHit(sf::IntRect obst);
         virtual void action(Map *map);
-        virtual void loadImg() = 0; 
+        virtual void loadImg() = 0;
+        virtual void die(Map *map) = 0;
 };
 #endif

@@ -4,9 +4,14 @@
 #include "map.h"
 #include "animation.h"
 
+#define PLAYER 0
+#define ENEMY 1
+
 class Map;
 class Projectile{
     private:
+        
+        int dmg;
         double radius;
         double stepX;
         double k;
@@ -15,15 +20,22 @@ class Projectile{
         double pX;
         double pY;
         double speed;
+        int left;
+        int top;
+        sf::IntRect hitbox;
         string type;
+        int target;
         sf::Texture *sprite;
         Animation * animation;
 
     public:
-        Projectile(double radius, double x, double y, double mX, double mY, double speed, string type);
+        Projectile(int dmg, double x, double y, double mX, double mY, double speed, string type, int target);
         void draw(sf::RenderWindow * window);
         void action(Map *map);
         void loadImg();
+        sf::IntRect * getHitbox();
+        int getDmg();
+        int getTarget();
 };
 
 #endif

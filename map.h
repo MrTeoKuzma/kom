@@ -34,6 +34,7 @@ class Map{
         void addPlayer(Player *player);
         void addProjectile(Projectile * projectile);
         void removeProjectile(Projectile * projectile);
+        void removeCreature(Creature * creature);
         void movePlayer(int dir);
         void dashPlayer();
         void doAttackPlayer(int mX, int mY);
@@ -44,6 +45,7 @@ class Map{
 		void loadSound();
         void playSound(int i);
         void changeType(int t);
+        int isProjectileHit(sf::IntRect * obj, int category);
         Level * getLevel();
         Player * getPlayer();
 };

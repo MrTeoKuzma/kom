@@ -7,11 +7,12 @@
 #include <SFML/Audio.hpp>
 
 Map::Map(): x(0), y(0){
-	loadSound();
+    loadSound();
 }
 
 void Map::draw(sf::RenderWindow *window){
     window->draw(background);
+    player->drawHp(window);
     unsigned int i;
     for(i = 0; i < creatures.size(); i++){
         (creatures[i])->action(this);
@@ -42,8 +43,12 @@ void Map::removeProjectile(Projectile * projectile){
     projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), projectile), projectiles.end());
 }
 
+void Map::removeCreature(Creature * creature){
+    creatures.erase(std::remove(creatures.begin(), creatures.end(), creature), creatures.end());
+}
+
 void Map::movePlayer(int dir){
-	playSound(HOJAPOTRAVISOUND);
+    playSound(HOJAPOTRAVISOUND);
     player->move(dir, level);
 }
 
@@ -69,11 +74,11 @@ void Map::loadEarth(){
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
-     addPlayer(new Player(500, 500, "earth"));
+    addPlayer(new Player(500, 500, "earth"));
 }
 
 void Map::loadLobby(){
-   addPlayer(new Player(500, 500, "earth"));
+    addPlayer(new Player(500, 500, "earth"));
 }
 Level * Map::getLevel(){
     return level;
@@ -82,6 +87,17 @@ Level * Map::getLevel(){
 Player * Map::getPlayer(){
     return player;
 }
+
+int Map::isProjectileHit(sf::IntRect * obj, int category){
+    for(unsigned int i=0; i<projectiles.size(); i++){
+        if(projectiles[i]->getHitbox()->intersects(*obj) && projectiles[i]->getTarget() == category){
+            removeProjectile(projectiles[i]);
+            return projectiles[i]->getDmg();
+        }
+    }
+    return 0;
+}
+
 void Map::loadSound() {
 
     sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
@@ -121,56 +137,56 @@ void Map::changeType(int t) // spremeni tip skina
         switch (t)
         {
             case 0:
-            player->setType("standard");
-            break;
+                player->setType("standard");
+                break;
 
             case 1:
-            player->setType("fire");
-            break;
+                player->setType("fire");
+                break;
 
             case 2:
-            player->setType("water");
-            break;
+                player->setType("water");
+                break;
 
             case 3:
-            player->setType("air");
-            break;
+                player->setType("air");
+                break;
 
             case 4:
-            player->setType("earth");
-            break;
+                player->setType("earth");
+                break;
 
             case 5:
-            player->setType("lightning");
-            break;
+                player->setType("lightning");
+                break;
 
             case 6:
-            player->setType("lava");
-            break;
+                player->setType("lava");
+                break;
 
             case 7:
-            player->setType("storm");
-            break;
+                player->setType("storm");
+                break;
 
             case 8:
-            player->setType("ice");
-            break;
+                player->setType("ice");
+                break;
 
             case 9:
-            player->setType("light");
-            break;
+                player->setType("light");
+                break;
 
             case 10:
-            player->setType("dark");
-            break;
+                player->setType("dark");
+                break;
 
             case 11:
-            player->setType("psi");
-            break;
+                player->setType("psi");
+                break;
 
             case 12:
-            player->setType("vakuum");
-            break;
+                player->setType("vakuum");
+                break;
         }
         player->loadImg();
     }

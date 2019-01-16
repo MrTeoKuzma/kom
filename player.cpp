@@ -5,10 +5,18 @@
 Player::Player(int x, int y, string type){
     Player::x = x;
     Player::y = y;
-    Player::width = 128;
-    Player::height = 128;
+    left = 10;
+    top = 25;
+    hitbox.width = 75;
+    hitbox.height = 105;
+    hitbox.left = x + left;
+    hitbox.top = y + top;
+    Player::width = hitbox.width;
+    Player::height = hitbox.height;
     Player::step = 4;
     Player::type = type;
+    Player::hp = 300;
+    Player::category = PLAYER;
     loadImg();
     skills[DASH].setCooldown(1000);
     skills[DASH].data[0] = 200; //dashLength
@@ -37,9 +45,7 @@ void Player::loadImg(){
     sprite[DOWN][ATTACK][NOTHING][0].loadFromFile("img/character/"+type+"/atck/back.png");
     sprite[LEFT][ATTACK][NOTHING][0].loadFromFile("img/character/"+type+"/atck/left.png");
 
-    animation = new Animation(200, 10, 25, 75, 105);
-    width = 75;
-    height = 105;
+    animation = new Animation(200, left, top, hitbox.width, hitbox.height);
 }
 
 void Player::dash(){
@@ -60,7 +66,7 @@ void Player::attack(Map * map, int mX, int mY){
     if(skills[SHOOT].isReady()){
         setState(ATTACK, 800);
         skills[SHOOT].use();
-        map->addProjectile(new Projectile(10, x, y, mX, mY, 8, "1lvl/water/1lvl_water.png"));
+        map->addProjectile(new Projectile(10, x, y, mX, mY, 8, "1lvl/water/1lvl_water.png", ENEMY));
     }
 }
 
@@ -96,3 +102,14 @@ bool Player::haveSkin(int index) // preveri ce imamo skin
     return Player::thereIsSkin[index];
 }
 
+void Player::die(Map *map){
+    sf::err()<<"hin si"<<std::endl;
+}
+
+void Player::drawHp(sf::RenderWindow * window){
+    sf::RectangleShape rect;
+    rect.setSize(sf::Vector2f(hp, 10));
+    rect.setFillColor(sf::Color::Red);
+    rect.setPosition(20, 20);
+    window->draw(rect);
+}

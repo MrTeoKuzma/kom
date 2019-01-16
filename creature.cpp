@@ -58,6 +58,8 @@ void Creature::move(int dir, Level * level){
         canMove(tmpStep, level);
         x += X_DIFF(tmpStep, dir);
         y += Y_DIFF(tmpStep, dir);
+        hitbox.left = x + left;
+        hitbox.top = y + top;
     }
 }
 
@@ -101,5 +103,16 @@ void Creature::action(Map *map){
     }
     if(isFall)
         sf::err()<<"Fall\n";
+    
+    int dmgDiff = map->isProjectileHit(&hitbox, category);
+    if(dmgDiff){
+        Creature::hp -= dmgDiff;
+    }
+    if(hp <= 0){
+        die(map);
+    }
+}
 
+bool Creature::isHit(sf::IntRect obst){
+    return hitbox.intersects(obst);
 }
