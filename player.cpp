@@ -103,7 +103,7 @@ bool Player::haveSkin(int index) // preveri ce imamo skin
 }
 
 void Player::die(Map *map){
-    map->setPlace(0);
+    map->setPlace(8);
 }
 
 void Player::drawHp(sf::RenderWindow * window){

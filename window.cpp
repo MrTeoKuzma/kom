@@ -334,9 +334,15 @@ void Window::changePlace(int place){
             map->loadBackground("img/bg/wardrobe.png");
             startWardrobe();
             break;
+
         case WELCOME:
             map = new Map();
             map->loadBackground("img/welcome_screen.png");
+            startWelcome();
+            break;
+        case DEAD:
+            map = new Map();
+            map->loadBackground("img/youdead.png");
             startWelcome();
             break;
         case ARENASELECT:
