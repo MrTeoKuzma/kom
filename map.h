@@ -50,6 +50,7 @@ class Map{
         void loadForeground(string fgImage);
         void loadEarth();
         void loadFire();
+        void loadWater();
         void loadLobby();
 		void loadSound();
         void playSound(int i);
@@ -64,6 +65,7 @@ class Map{
         void loadLobbySound();
         void loadEarthSound();
         void loadFireSound();
+        void loadWaterSound();
         void setBackgroundSound(int i);
 };
 #endif
