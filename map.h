@@ -31,6 +31,8 @@ class Map{
         bool playerStatusBar;
         int place;
         int setBGsound;
+        int walkSound;
+        int attackSound;
 
     public:
         Map();
@@ -47,6 +49,7 @@ class Map{
         void loadBackground(string bgImage);
         void loadForeground(string fgImage);
         void loadEarth();
+        void loadFire();
         void loadLobby();
 		void loadSound();
         void playSound(int i);
@@ -60,7 +63,7 @@ class Map{
 
         void loadLobbySound();
         void loadEarthSound();
-
+        void loadFireSound();
         void setBackgroundSound(int i);
 };
 #endif

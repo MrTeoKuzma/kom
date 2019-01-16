@@ -30,5 +30,6 @@ class Player : public Creature{
         bool haveSkin(int index);
         void die(Map *map);
         void drawHp(sf::RenderWindow * window);
+        void setAttackSpeed(int i);
 };
 #endif

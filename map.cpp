@@ -8,6 +8,8 @@
 
 Map::Map(): x(0), y(0), playerStatusBar(0){
     setBGsound = -1;
+    walkSound = -1;
+    attackSound = -1;
 }
 
 void Map::draw(sf::RenderWindow *window){
@@ -52,7 +54,7 @@ void Map::removeCreature(Creature * creature){
 }
 
 void Map::movePlayer(int dir){
-    playSound(HOJAPOTRAVISOUND);
+    playSound(walkSound);
     player->move(dir, level);
 }
 
@@ -63,6 +65,7 @@ void Map::dashPlayer(){
 
 void Map::doAttackPlayer(int mX, int mY){
     player->attack(this, mX, mY);
+    playSound(attackSound);
 }
 
 void Map::loadLevel(string fileName, int dotDmg){
@@ -83,14 +86,31 @@ void Map::loadEarth(){
     setPlayerStatusBar(true);
     loadEarthSound();
     setBackgroundSound(GLASBA008SOUND);
+    walkSound=HOJAPOTRAVISOUND;
+    attackSound = PSIHOKINEZASOUND;
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
     addPlayer(new Player(500, 500, "earth"));
+    player->setAttackSpeed(800);
+}
+
+void Map::loadFire(){
+    setPlayerStatusBar(true);
+    loadFireSound();
+    walkSound=HOJAPOKAMENJUSOUND;
+    attackSound = OGENJSOUND;
+    setBackgroundSound(GLASBA006SOUND);
+    addCreature(new Enemy01(800, 600));
+    addCreature(new Enemy01(900, 400));
+    addCreature(new Enemy01(500, 300));
+    addPlayer(new Player(500, 500, "earth"));
+    player->setAttackSpeed(2000);
 }
 
 void Map::loadLobby(){
     loadLobbySound();
+    walkSound = HOJAPOTRAVISOUND;
     setBackgroundSound(GLASBA006SOUND);
     addPlayer(new Player(500, 500, "earth"));
 }
@@ -149,6 +169,14 @@ void Map::loadEarthSound(){
     sounds[GLASBA008SOUND] = new Sound("Glasba/osmaglasba.wav");
     sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
     sounds[PSIHOKINEZASOUND] = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
+    sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
+}
+
+void Map::loadFireSound(){
+    sounds[HOJAPOKAMENJUSOUND] = new Sound("Zvocni efekti/Hoja/HojaPoKamenju.wav");
+    sounds[GLASBA006SOUND] = new Sound("Glasba/sestaglasba.wav");
+    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+    sounds[OGENJSOUND] = new Sound("Zvocni efekti/Napad/Ogenj.wav");
     sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
 }
 

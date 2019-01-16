@@ -23,7 +23,7 @@ Player::Player(int x, int y, string type){
     skills[DASH].data[1] = 10; //dashStep
     skills[DASH].data[2] = 0; //current
 
-    skills[SHOOT].setCooldown(500);
+    skills[SHOOT].setCooldown(800);
 }
 
 void Player::loadImg(){
@@ -112,4 +112,7 @@ void Player::drawHp(sf::RenderWindow * window){
     rect.setFillColor(sf::Color::Red);
     rect.setPosition(20, 20);
     window->draw(rect);
+}
+void Player::setAttackSpeed(int i){
+    skills[SHOOT].setCooldown(i);
 }

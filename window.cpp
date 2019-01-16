@@ -333,7 +333,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/lav_BG.png");
             loadMapLevel("levels/level01", 60);
-            map->loadEarth();
+            map->loadFire();
             map->changeType(PlayerType);
             map->setPlace(FIRE);
             startGame();
