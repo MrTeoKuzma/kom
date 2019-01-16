@@ -12,3 +12,6 @@ KindOfMagic_v3.cbp
 KindOfMagic_v3.depend
 KindOfMagic_v3.layout
 *.o
+bin/Debug/Igra.exe
+Igra.cbp
+Igra.depend
