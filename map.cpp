@@ -25,6 +25,7 @@ void Map::draw(sf::RenderWindow *window){
         (projectiles[i])->draw(window);
         (projectiles[i])->action(this);
     }
+    window->draw(foreground);
 }
 
 void Map::addCreature(Creature *creature){
@@ -68,8 +69,13 @@ void Map::loadLevel(string fileName, int dotDmg){
 }
 
 void Map::loadBackground(string bgImage){
-    image.loadFromFile(bgImage);
-    background.setTexture(image, true);
+    backgroundImage.loadFromFile(bgImage);
+    background.setTexture(backgroundImage, true);
+}
+
+void Map::loadForeground(string fgImage){
+    foregroundImage.loadFromFile(fgImage);
+    foreground.setTexture(foregroundImage, true);
 }
 
 void Map::loadEarth(){

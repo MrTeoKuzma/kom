@@ -17,8 +17,10 @@ class Projectile;
 
 class Map{
     private:
-        sf::Texture image;
+        sf::Texture backgroundImage;
+        sf::Texture foregroundImage;
         sf::Sprite background;
+        sf::Sprite foreground;
         vector <Creature *> creatures;
         vector <Projectile *> projectiles;
         Player *player;
@@ -42,6 +44,7 @@ class Map{
         void doAttackPlayer(int mX, int mY);
         void loadLevel(string fileName, int dotDmg);
         void loadBackground(string bgImage);
+        void loadForeground(string fgImage);
         void loadEarth();
         void loadLobby();
 		void loadSound();

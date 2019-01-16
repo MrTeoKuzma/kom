@@ -327,6 +327,7 @@ void Window::changePlace(int place){
         case EARTH:
             map = new Map();
             map->loadBackground("img/arena/earth_BG.png");
+            map->loadForeground("img/arena/earth_FG.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);
@@ -339,22 +340,27 @@ void Window::changePlace(int place){
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);
+            map->setPlace(FIRE);
             startGame();
             break;
         case WATER:
             map = new Map();
             map->loadBackground("img/arena/water_BG.png");
+            map->loadForeground("img/arena/water_FG.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);
+            map->setPlace(WATER);
             startGame();
             break;
         case AIR:
             map = new Map();
             map->loadBackground("img/arena/air_BG.png");
+            map->loadForeground("img/arena/air_FG.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);
+            map->setPlace(AIR);
             startGame();
             break;
     }
