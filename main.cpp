@@ -5,6 +5,6 @@ using namespace std;
 
 int main()
 {
-    Window * window = new Window(LOBBY);
+    Window * window = new Window(WELCOME);
     return 0;
 }

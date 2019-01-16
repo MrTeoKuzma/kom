@@ -199,6 +199,18 @@ void Window::handleEventsWardrobe(){
     }
 }
 
+void Window::handleEventsWelcome(){
+    while (window->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            window->close();
+    }
+    //GO TO GAME JEE
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        changePlace(LOBBY);
+    }
+}
+
 void Window::handleEventsArenaSelect(){
     while (window->pollEvent(event))
     {
@@ -255,7 +267,7 @@ void Window::startWardrobe(){
 void Window::startWelcome(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
-        handleEventsWardrobe();
+        handleEventsWelcome();
         map->draw(window);
         window->display();
     }
@@ -321,6 +333,11 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/bg/wardrobe.png");
             startWardrobe();
+            break;
+        case WELCOME:
+            map = new Map();
+            map->loadBackground("img/welcome_screen.png");
+            startWelcome();
             break;
         case ARENASELECT:
             map=new Map();
