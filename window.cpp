@@ -244,7 +244,9 @@ void Window::startGame(){
         window->clear(sf::Color::Black);
         handleEvents();
         map->draw(window);
+        map->action(newplace);
         window->display();
+        checkNewplace();
     }
 }
 void Window::startWardrobe(){
@@ -273,6 +275,12 @@ void Window::startLobby(){
     }
 }
 
+void Window::checkNewplace(){
+    if(place != newplace){
+        changePlace(newplace);
+    }
+}
+
 void Window::loadMapImg(string image){
    // map = new Map(image);
 }
@@ -292,8 +300,10 @@ void Window::setPlayerType(int t)
 {
     PlayerType=t;
 }
-void Window::changePlace(int place){
 
+void Window::changePlace(int place){
+    Window::newplace = place;
+    Window::place = place;
     switch(place){
         case LOBBY:
             map=new Map();
@@ -320,6 +330,7 @@ void Window::changePlace(int place){
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);
+            map->setPlace(EARTH);
             startGame();
             break;
         case FIRE:

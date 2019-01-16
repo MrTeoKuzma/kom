@@ -27,6 +27,7 @@ class Map{
         int x;
         int y;
         bool playerStatusBar;
+        int place;
 
     public:
         Map();
@@ -50,5 +51,7 @@ class Map{
         Level * getLevel();
         Player * getPlayer();
         void setPlayerStatusBar(bool status);
+        void action(int &place);
+        void setPlace(int place);
 };
 #endif

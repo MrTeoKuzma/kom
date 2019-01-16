@@ -198,3 +198,18 @@ void Map::changeType(int t) // spremeni tip skina
 void Map::setPlayerStatusBar(bool status){
     playerStatusBar = status;
 }
+
+void Map::action(int &place){
+    place = Map::place;
+    switch(place){
+        case 2:
+            if(creatures.size() == 1){
+                place = 0;
+            }
+        break;
+    }
+}
+
+void Map::setPlace(int place){
+    Map::place = place;
+}

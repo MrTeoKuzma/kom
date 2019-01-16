@@ -26,6 +26,7 @@ class Window{
         int height;
         Map * map;
         int place;
+        int newplace;
         int PlayerType;
 
     public:
@@ -34,6 +35,7 @@ class Window{
         void handleEventsWardrobe();
         void handleEventsLobby();
         void startGame();
+        void checkNewplace();
         void startWardrobe();
         void startArenaSelect();
         void handleEventsArenaSelect();
