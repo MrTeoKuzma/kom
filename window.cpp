@@ -105,24 +105,19 @@ void Window::handleEventsLobby(){
     if(px<571 && px>99 && py<390 && py>342 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         changePlace(ARENASELECT);
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-        map->dashPlayer();
-    }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
-        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
-        map->doAttackPlayer(pos.x, pos.y);
+
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
         changePlace(WARDROBE);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
-            map->changeType(1);
+
         //skill 1
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
-        map->changeType(2);
+
         //skill 2
     }
 
