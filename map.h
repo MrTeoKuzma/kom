@@ -26,6 +26,7 @@ class Map{
         Level *level;
         int x;
         int y;
+        bool playerStatusBar;
 
     public:
         Map();
@@ -48,5 +49,6 @@ class Map{
         int isProjectileHit(sf::IntRect * obj, int category);
         Level * getLevel();
         Player * getPlayer();
+        void setPlayerStatusBar(bool status);
 };
 #endif

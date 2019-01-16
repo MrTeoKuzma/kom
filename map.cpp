@@ -6,13 +6,15 @@
 #include <algorithm>
 #include <SFML/Audio.hpp>
 
-Map::Map(): x(0), y(0){
+Map::Map(): x(0), y(0), playerStatusBar(0){
     loadSound();
 }
 
 void Map::draw(sf::RenderWindow *window){
     window->draw(background);
-    player->drawHp(window);
+    if(playerStatusBar){
+        player->drawHp(window);
+    }
     unsigned int i;
     for(i = 0; i < creatures.size(); i++){
         (creatures[i])->action(this);
@@ -71,6 +73,7 @@ void Map::loadBackground(string bgImage){
 }
 
 void Map::loadEarth(){
+    setPlayerStatusBar(true);
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
@@ -190,4 +193,8 @@ void Map::changeType(int t) // spremeni tip skina
         }
         player->loadImg();
     }
+}
+
+void Map::setPlayerStatusBar(bool status){
+    playerStatusBar = status;
 }
