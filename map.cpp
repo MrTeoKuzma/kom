@@ -118,7 +118,7 @@ void Map::loadWater(){
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
     addPlayer(new Player(500, 500, "earth"));
-    player->setAttackSpeed(1400);
+    player->setAttackSpeed(800);
 }
 
 void Map::loadLobby(){
