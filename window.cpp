@@ -247,6 +247,14 @@ void Window::startGame(){
 void Window::startWardrobe(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
+        handleEventsWelcome();
+        map->draw(window);
+        window->display();
+    }
+}
+void Window::startWelcome(){
+    while (window->isOpen()){
+        window->clear(sf::Color::Black);
         handleEventsWardrobe();
         map->draw(window);
         window->display();

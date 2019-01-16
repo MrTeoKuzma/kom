@@ -15,6 +15,7 @@
 #define FIRE 4
 #define WATER 5
 #define ARENASELECT 6
+#define WELCOME 7
 using namespace std;
 
 class Window{
@@ -34,7 +35,9 @@ class Window{
         void handleEvents();
         void handleEventsWardrobe();
         void handleEventsLobby();
+        void handleEventsWelcome();
         void startGame();
+        void startWelcome();
         void checkNewplace();
         void startWardrobe();
         void startArenaSelect();
