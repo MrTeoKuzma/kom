@@ -1,9 +1,22 @@
 #include "window.h"
 
 Window::Window(int place):title(TITLE), width(WINWIDTH), height(WINHEIGHT), place(place){
+    loop = true;
     window = new sf::RenderWindow(sf::VideoMode(width, height), title);
     window->setFramerateLimit(60);
     changePlace(place);
+}
+
+
+void Window::pauseEvents(){
+    while(window->pollEvent(event))
+    {
+         if (event.type == sf::Event::Closed)
+            window->close();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        loop = true;
+    }
 }
 
 void Window::handleEvents(){
@@ -36,10 +49,12 @@ void Window::handleEvents(){
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
         map->doAttackPlayer(pos.x, pos.y);
+        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
-        changePlace(WARDROBE);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+        loop = false;
+        //changePlace(WARDROBE);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
             map->setSkillsTest(1);
@@ -255,12 +270,16 @@ void Window::startGame(){
         map->action(newplace);
         window->display();
         checkNewplace();
+        while(!loop){
+            pauseEvents();   
+        }
     }
+
 }
 void Window::startWardrobe(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
-        handleEventsWelcome();
+        handleEventsWardrobe();
         map->draw(window);
         window->display();
     }
@@ -326,7 +345,6 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/lobby.png");
             loadMapLevel("levels/level01", 60);
             map->loadLobby();
-            map->changeType(PlayerType);
             startLobby();
             break;
 
@@ -359,6 +377,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/earth_BG.png");
             map->loadForeground("img/arena/earth_FG.png");
+            map->loadHUD("img/hud/standard.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);

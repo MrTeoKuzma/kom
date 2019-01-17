@@ -30,9 +30,11 @@ class Window{
         int place;
         int newplace;
         int PlayerType;
+        int loop;
 
     public:
         Window(int place);
+        void pauseEvents();
         void handleEvents();
         void handleEventsWardrobe();
         void handleEventsLobby();

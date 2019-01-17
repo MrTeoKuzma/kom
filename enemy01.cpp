@@ -3,6 +3,7 @@
 #include "skill.h"
 #include "player.h"
 
+
 Enemy01::Enemy01(int x, int y){
     Enemy01::direction = LEFT;
     Enemy01::x = x;
@@ -53,7 +54,9 @@ void Enemy01::action(Map *map){
     Creature::action(map);
     int px=map->getPlayer()->getX();
     int py=map->getPlayer()->getY();
-    if(movement.isReady())
+    if(abs(px-x)<200 || abs(py-y)<200 )
+    {
+        if(movement.isReady())
     {
         if(tick)
         {
@@ -73,6 +76,7 @@ void Enemy01::action(Map *map){
         }
         movement.use();
     }
+    }
     attack(map, map->getPlayer()->getX(), map->getPlayer()->getY());
     //sf::err() se uporabi enako kot cout
     //sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
@@ -80,5 +84,5 @@ void Enemy01::action(Map *map){
 }
 
 void Enemy01::die(Map * map){
-    map->removeCreature(this);   
+    map->removeCreature(this);
 }

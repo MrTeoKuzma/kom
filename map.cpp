@@ -2,6 +2,7 @@
 #include "creature.h"
 #include "player.h"
 #include "enemy01.h"
+#include "enemy02.h"
 #include "projectile.h"
 #include <algorithm>
 #include <SFML/Audio.hpp>
@@ -12,9 +13,7 @@ Map::Map(): x(0), y(0), playerStatusBar(0), soundsBackground(0), soundsAttack(0)
 void Map::draw(sf::RenderWindow *window){
     window->draw(background);
     playSound(soundsBackground);
-    if(playerStatusBar){
-        player->drawHp(window);
-    }
+
     unsigned int i;
     for(i = 0; i < creatures.size(); i++){
         (creatures[i])->action(this);
@@ -26,6 +25,10 @@ void Map::draw(sf::RenderWindow *window){
         (projectiles[i])->action(this);
     }
     window->draw(foreground);
+    window->draw(hud);
+    if(playerStatusBar){
+        player->drawHp(window);
+    }
 }
 
 void Map::addCreature(Creature *creature){
@@ -78,6 +81,10 @@ void Map::loadForeground(string fgImage){
     foregroundImage.loadFromFile(fgImage);
     foreground.setTexture(foregroundImage, true);
 }
+void Map::loadHUD(string hudimg){
+    hudImage.loadFromFile(hudimg);
+    hud.setTexture(hudImage, true);
+}
 
 void Map::loadEarth(){
     setPlayerStatusBar(true);
@@ -86,7 +93,7 @@ void Map::loadEarth(){
 
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
-    addCreature(new Enemy01(500, 300));
+    addCreature(new Enemy02(500, 300));
     addPlayer(new Player(500, 500, "earth"));
     player->setAttackSpeed(800);
 }
