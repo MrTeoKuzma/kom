@@ -410,7 +410,7 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/air_BG.png");
             map->loadForeground("img/arena/air_FG.png");
             map->loadHUD("img/hud/hud.png");
-            loadMapLevel("levels/level01", 60);
+            loadMapLevel("levels/air", 60);
             map->loadAir(PlayerType);
             map->setPlace(AIR);
             startGame();
