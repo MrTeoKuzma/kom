@@ -15,15 +15,15 @@ Enemy02::Enemy02(int x, int y){
     hitbox.top = y + top;
     Enemy02::width = hitbox.width;;
     Enemy02::height = hitbox.height;
-    Enemy02::step = 4;
+    Enemy02::step = 6;
     Enemy02::startX = x;
     Enemy02::endX = x+100;
     Enemy02::tick=true;
-    Enemy02::hp = 100;
+    Enemy02::hp = 200;
     Enemy02::category = ENEMY;
 
     skills[SHOOT_E].setCooldown(600);
-    movement.setCooldown(300);
+    movement.setCooldown(200);
     loadImg();
 }
 
