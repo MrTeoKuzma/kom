@@ -15,11 +15,11 @@ Enemy02::Enemy02(int x, int y){
     hitbox.top = y + top;
     Enemy02::width = hitbox.width;;
     Enemy02::height = hitbox.height;
-    Enemy02::step = 6;
+    Enemy02::step = 8;
     Enemy02::startX = x;
     Enemy02::endX = x+100;
     Enemy02::tick=true;
-    Enemy02::hp = 200;
+    Enemy02::hp = 150;
     Enemy02::category = ENEMY;
 
     skills[SHOOT_E].setCooldown(600);
@@ -80,5 +80,5 @@ void Enemy02::action(Map *map){
 }
 
 void Enemy02::die(Map * map){
-    map->removeCreature(this);   
+    map->removeCreature(this);
 }
