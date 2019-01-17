@@ -271,7 +271,7 @@ void Window::startGame(){
         window->display();
         checkNewplace();
         while(!loop){
-            pauseEvents();   
+            pauseEvents();
         }
     }
 
@@ -341,6 +341,7 @@ void Window::changePlace(int place){
     Window::place = place;
     switch(place){
         case LOBBY:
+            map->stopSoundLobby();
             map=new Map();
             map->loadBackground("img/arena/lobby.png");
             loadMapLevel("levels/level01", 60);
