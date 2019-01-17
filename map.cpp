@@ -89,6 +89,7 @@ void Map::loadHUD(string hudimg){
 }
 
 void Map::loadEarth(string type){
+    waves = 2;
     setPlayerStatusBar(true);
     soundsBackground=0;
     loadEarthSound();
@@ -144,35 +145,7 @@ int Map::isProjectileHit(sf::IntRect * obj, int category){
     }
     return 0;
 }
-/*
-void Map::loadSound() {
 
-    sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
-    sounds[KUPLJENOSHOPSOUND] = new Sound("Zvocni efekti/Akcije/Kupljeno_shop.wav");
-    sounds[POBIRANJECOINOVSOUND] = new Sound("Zvocni efekti/Akcije/Pobiranje_coinov.wav");
-    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
-    sounds[HOJAPOMOKREMPESKUSOUND] = new Sound("Zvocni efekti/Hoja/HojaPoMokremPesku.wav");
-    sounds[HOJAPOKAMENJUSOUND] = new Sound("Zvocni efekti/Hoja/HojaPoKamenju.wav");
-    sounds[LEDSOUND] = new Sound("Zvocni efekti/Napad/Led.wav");
-    sounds[NALAGANJESTRELESOUND] = new Sound("Zvocni efekti/Napad/Nalaganje strele.wav");
-    sounds[NEVIHTASOUND] = new Sound("Zvocni efekti/Napad/Nevihta.wav");
-    sounds[OGENJSOUND] = new Sound("Zvocni efekti/Napad/Ogenj.wav");
-    sounds[PSIHOKINEZASOUND] = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
-    sounds[TEMASOUND] = new Sound("Zvocni efekti/Napad/Tema.wav");
-    sounds[UDARSTRELESOUND] = new Sound("Zvocni efekti/Napad/Udar_strele.wav");
-    sounds[VETERSOUND] = new Sound("Zvocni efekti/Napad/Veter.wav");
-    sounds[VODASOUND] = new Sound("Zvocni efekti/Napad/Voda.wav");
-    sounds[PREJEMUDARCASOUND] = new Sound("Zvocni efekti/Prejem_udarca/Prejem_udarca.wav");
-    sounds[PRIKAZNASPROTNIKA01SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika001.wav");
-    sounds[PRIKAZNASPROTNIKA02SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika002.wav");
-    sounds[PRIKAZNASPROTNIKA03SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika003.wav");
-    sounds[PRIKAZNASPROTNIKA04SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika004.wav");
-    sounds[PRIKAZNASPROTNIKA05SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika005.wav");
-    sounds[PRIKAZNASPROTNIKA06SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika006.wav");
-    sounds[PRIKAZNASPROTNIKA07SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika007.wav");
-    sounds[PRIKAZNASPROTNIKA08SOUND] = new Sound("Zvocni efekti/Prikaz nasprotnika/Prikaz_nasprotnika008.wav");
-}
-*/
 void Map::loadLobbySound(){
     soundsBackground = new Sound("Glasba/sestaglasba.wav");
     soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
@@ -272,10 +245,24 @@ void Map::action(int &place){
     place = Map::place;
     switch(place){
         case 2:
-            if(creatures.size() == 1){
-                place = 0;
-            }
+            logicEarth();
         break;
+    }
+}
+
+void Map::logicEarth(){
+    if(waves == 0 && creatures.size() == 1)
+        place = 0;
+    
+    if(creatures.size() == 1){
+        waves--;
+        switch(waves){
+            default:
+                addCreature(new Enemy01(800, 600));
+                addCreature(new Enemy01(900, 400));
+                addCreature(new Enemy01(500, 300));
+                break;
+        }
     }
 }
 

@@ -36,6 +36,7 @@ class Map{
         int y;
         bool playerStatusBar;
         int place;
+        int waves;
 
     public:
         Map();
@@ -53,6 +54,7 @@ class Map{
         void loadForeground(string fgImage);
         void loadHUD(string hudimg);
         void loadEarth(string type);
+        void logicEarth();
         void loadFire(string type);
         void loadWater(string type);
         void loadLobby(string type);
