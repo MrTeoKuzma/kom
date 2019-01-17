@@ -43,7 +43,7 @@ void Window::handleEvents(){
         map->movePlayer(DOWN);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
-        map->addPlayerHP(15);
+        map->addPlayerHP();
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){

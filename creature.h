@@ -67,6 +67,7 @@ class Creature{
         int height;
         int hpMax;
         int hp;
+        int hpuse;
         int mpMax;
         int mp;
         float step;
