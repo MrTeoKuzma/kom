@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <SFML/Audio.hpp>
 
-Map::Map(): x(0), y(0), playerStatusBar(0), soundsBackground(0), soundsAttack(0), soundsDash(0), soundsWalk(0){
+Map::Map(): soundsDash(0), soundsBackground(0), soundsAttack(0), soundsWalk(0), x(0), y(0), playerStatusBar(0) {
 }
 
 void Map::draw(sf::RenderWindow *window){
