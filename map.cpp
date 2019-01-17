@@ -385,24 +385,24 @@ void Map::logicFire(){
             default:
                 break;
             case 4:
-                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy02(500, 150));
                 addCreature(new Enemy01(800, 200));
                 break;
             case 3:
                 addCreature(new Enemy01(400, 200));
-                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy02(600, 150));
                 addCreature(new Enemy01(800, 200));
                 break;
             case 2:
                 addCreature(new Enemy01(400, 200));
-                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy02(600, 150));
                 addCreature(new Enemy01(800, 200));
                 addCreature(new Enemy02(1000, 200));
                 break;
             case 1:
                 addCreature(new Enemy02(100, 200));
                 addCreature(new Enemy01(400, 200));
-                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy02(600, 150));
                 addCreature(new Enemy01(800, 200));
                 addCreature(new Enemy02(1000, 200));
                 addCreature(new Enemy01(1200, 200));
