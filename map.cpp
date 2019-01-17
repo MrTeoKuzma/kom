@@ -91,7 +91,7 @@ void Map::loadHUD(string hudimg){
 }
 
 void Map::loadEarth(string type){
-    waves = 2;
+    waves = 3;
     setPlayerStatusBar(true);
     soundsBackground=0;
     loadEarthSound();
@@ -113,10 +113,7 @@ void Map::loadFire(string type){
 void Map::loadWater(string type){
     setPlayerStatusBar(true);
     loadWaterSound();
-
-    addCreature(new Enemy01(800, 600));
-    addCreature(new Enemy01(900, 400));
-    addCreature(new Enemy01(500, 300));
+    waves= 3;
     addPlayer(new Player(500, 500, type));
     player->setAttackSpeed(800);
 }
@@ -124,10 +121,7 @@ void Map::loadWater(string type){
 void Map::loadAir(string type){
     setPlayerStatusBar(true);
     loadAirSound();
-
-    addCreature(new Enemy01(800, 600));
-    addCreature(new Enemy01(900, 400));
-    addCreature(new Enemy01(500, 300));
+    waves= 5;
     addPlayer(new Player(500, 500, type));
     player->setAttackSpeed(800);
 }
@@ -278,15 +272,26 @@ void Map::changeType(string t) // spremeni tip skina
 void Map::setPlayerStatusBar(bool status){
     playerStatusBar = status;
 }
-
+/*
+#define EARTH 2
+#define AIR 3
+#define FIRE 4
+#define WATER 5
+*/
 void Map::action(int &place){
     place = Map::place;
     switch(place){
         case 2:
             logicEarth();
         break;
+        case 3:
+            logicAir();
+            break;
         case 4:
             logicFire();
+            break;
+        case 5:
+            logicWater();
             break;
     }
 }
@@ -296,14 +301,78 @@ void Map::logicEarth(){
         place = 0;
 
     if(creatures.size() == 1){
+        switch(waves){
+            default:
+                addCreature(new Enemy01(800, 500));
+                addCreature(new Enemy01(500, 300));
+                break;
+            case 3:
+                addCreature(new Enemy01(500, 300));
+                break;
+            case 1:
+                addCreature(new Enemy02(700, 100));
+                break;
+        }
         waves--;
+    }
+}
+void Map::logicWater(){
+    if(waves == 0 && creatures.size() == 1)
+        place = 0;
+
+    if(creatures.size() == 1){
         switch(waves){
             default:
                 addCreature(new Enemy01(800, 600));
                 addCreature(new Enemy01(900, 400));
                 addCreature(new Enemy01(500, 300));
                 break;
+            case 3:
+                addCreature(new Enemy01(500, 300));
+                addCreature(new Enemy01(800, 100));
+                break;
+            case 1:
+                addCreature(new Enemy01(350, 100));
+                addCreature(new Enemy02(900, 100));
+                break;
         }
+        waves--;
+    }
+}
+
+void Map::logicAir(){
+    if(waves == 0 && creatures.size() == 1)
+        place = 0;
+
+    if(creatures.size() == 1){
+        switch(waves){
+            default:
+                addCreature(new Enemy01(800, 500));
+                addCreature(new Enemy01(900, 400));
+                addCreature(new Enemy01(500, 300));
+                break;
+            case 4:
+                addCreature(new Enemy01(900, 400));
+                addCreature(new Enemy01(500, 300));
+                addCreature(new Enemy02(350, 100));
+                break;
+            case 3:
+                addCreature(new Enemy02(500, 300));
+                addCreature(new Enemy02(800, 100));
+                break;
+            case 2:
+                addCreature(new Enemy01(800, 500));
+                addCreature(new Enemy01(900, 400));
+                addCreature(new Enemy01(500, 300));
+                addCreature(new Enemy02(800, 100));
+                break;
+            case 1:
+                addCreature(new Enemy02(350, 100));
+                addCreature(new Enemy01(500, 300));
+                addCreature(new Enemy02(900, 100));
+                break;
+        }
+        waves--;
     }
 }
 
@@ -312,17 +381,34 @@ void Map::logicFire(){
         place = 0;
 
     if(creatures.size() == 1){
-        waves--;
         switch(waves){
             default:
-                addCreature(new Enemy02(100, 200));
-                addCreature(new Enemy01(200, 200));
-                addCreature(new Enemy02(300, 200));
+                break;
+            case 4:
+                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy01(800, 200));
+                break;
+            case 3:
                 addCreature(new Enemy01(400, 200));
-                addCreature(new Enemy02(500, 200));
-                addCreature(new Enemy01(600, 200));
+                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy01(800, 200));
+                break;
+            case 2:
+                addCreature(new Enemy01(400, 200));
+                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy01(800, 200));
+                addCreature(new Enemy02(1000, 200));
+                break;
+            case 1:
+                addCreature(new Enemy02(100, 200));
+                addCreature(new Enemy01(400, 200));
+                addCreature(new Enemy02(600, 200));
+                addCreature(new Enemy01(800, 200));
+                addCreature(new Enemy02(1000, 200));
+                addCreature(new Enemy01(1200, 200));
                 break;
         }
+        waves--;
     }
 }
 
