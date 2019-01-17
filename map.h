@@ -67,5 +67,7 @@ class Map{
         void loadFireSound();
         void loadWaterSound();
         void setBackgroundSound(int i);
+
+        void setSkillsTest(int s);
 };
 #endif

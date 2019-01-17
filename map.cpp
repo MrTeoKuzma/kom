@@ -209,6 +209,10 @@ void Map::setBackgroundSound(int i){
     setBGsound = i;
 }
 
+void Map::setSkillsTest(int s)
+{
+    player->setSkill(s);
+}
 
 void Map::changeType(int t) // spremeni tip skina
 {

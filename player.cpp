@@ -22,8 +22,10 @@ Player::Player(int x, int y, string type){
     skills[DASH].data[0] = 200; //dashLength
     skills[DASH].data[1] = 10; //dashStep
     skills[DASH].data[2] = 0; //current
-
+    currentSkill = SHOOT;
     skills[SHOOT].setCooldown(800);
+    skills[FIRE1].setCooldown(500);
+    skills[WATER1].setCooldown(500);
 }
 
 void Player::loadImg(){
@@ -63,10 +65,24 @@ void Player::turn(int mX, int mY){
 
 void Player::attack(Map * map, int mX, int mY){
     turn(mX, mY);
-    if(skills[SHOOT].isReady()){
+    if(skills[currentSkill].isReady()){
         setState(ATTACK, 800);
-        skills[SHOOT].use();
-        map->addProjectile(new Projectile(10, x, y, mX, mY, 8, "1lvl/water/1lvl_water.png", ENEMY));
+        skills[currentSkill].use();
+
+        switch(currentSkill)
+        {
+        case SHOOT:
+            map->addProjectile(new Projectile(10, x, y, mX, mY, 8, "1lvl/water/1lvl_water.png", ENEMY));
+            break;
+
+        case FIRE1:
+            map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/fire/1lvl_fire.png", ENEMY));
+            break;
+
+        case WATER1:
+            map->addProjectile(new Projectile(12, x, y, mX, mY, 6, "1lvl/water/1lvl_water.png", ENEMY));
+            break;
+        }
     }
 }
 
@@ -115,4 +131,7 @@ void Player::drawHp(sf::RenderWindow * window){
 }
 void Player::setAttackSpeed(int i){
     skills[SHOOT].setCooldown(i);
+
+void Player::setSkill(int skill){
+    currentSkill = skill;
 }
