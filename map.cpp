@@ -236,6 +236,20 @@ void Map::stopSoundFightingMap(){
     }
 }
 
+void Map::pauseSound(){
+    if(soundsBackground)
+        soundsBackground->pause();
+        soundsAttack->pause();
+        soundsDash->pause();
+        soundsWalk->pause();
+}
+
+void Map::resumeSoune(){
+    soundsBackground->resume();
+    soundsAttack->resume();
+    soundsDash->resume();
+    soundsWalk->resume();
+}
 
 void Map::setSkillsTest(int s)
 {

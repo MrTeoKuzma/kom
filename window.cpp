@@ -275,7 +275,9 @@ void Window::startGame(){
         checkNewplace();
         while(!loop){
             pauseEvents();
+            map->pauseSound();
         }
+        map->resumeSoune();
     }
 
 }
