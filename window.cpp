@@ -1,9 +1,22 @@
 #include "window.h"
 
 Window::Window(int place):title(TITLE), width(WINWIDTH), height(WINHEIGHT), place(place){
+    loop = true;
     window = new sf::RenderWindow(sf::VideoMode(width, height), title);
     window->setFramerateLimit(60);
     changePlace(place);
+}
+
+
+void Window::pauseEvents(){
+    while(window->pollEvent(event))
+    {
+         if (event.type == sf::Event::Closed)
+            window->close();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        loop = true;
+    }
 }
 
 void Window::handleEvents(){
@@ -38,8 +51,9 @@ void Window::handleEvents(){
         map->doAttackPlayer(pos.x, pos.y);
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
-        changePlace(WARDROBE);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+        loop = false;
+        //changePlace(WARDROBE);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
             map->setSkillsTest(1);
@@ -255,7 +269,11 @@ void Window::startGame(){
         map->action(newplace);
         window->display();
         checkNewplace();
+        while(!loop){
+            pauseEvents();   
+        }
     }
+
 }
 void Window::startWardrobe(){
     while (window->isOpen()){
