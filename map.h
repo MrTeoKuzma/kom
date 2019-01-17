@@ -58,6 +58,8 @@ class Map{
         void loadEarth(string type);
         void logicEarth();
         void logicFire();
+        void logicWater();
+        void logicAir();
         void loadFire(string type);
         void loadWater(string type);
         void loadLobby(string type);

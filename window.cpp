@@ -122,7 +122,7 @@ void Window::handleEventsLobby(){
         map->movePlayer(DOWN);
     }
 
-    if(px<571 && px>99 && py<390 && py>342 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+    if(px<420 && px>99 && py<390 && py>332 && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         changePlace(ARENASELECT);
     }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
@@ -341,7 +341,7 @@ void Window::changePlace(int place){
             map->stopSoundLobby();
             map=new Map();
             map->loadBackground("img/arena/lobby.png");
-            loadMapLevel("levels/level01", 60);
+            loadMapLevel("levels/lobby", 60);
             map->loadLobby(PlayerType);
             startLobby();
             break;
