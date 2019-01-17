@@ -240,6 +240,20 @@ void Map::stopSoundFightingMap(){
     }
 }
 
+void Map::pauseSound(){
+    if(soundsBackground)
+        soundsBackground->pause();
+        soundsAttack->pause();
+        soundsDash->pause();
+        soundsWalk->pause();
+}
+
+void Map::resumeSoune(){
+    soundsBackground->resume();
+    soundsAttack->resume();
+    soundsDash->resume();
+    soundsWalk->resume();
+}
 
 void Map::setSkillsTest(int s)
 {
@@ -281,7 +295,7 @@ void Map::action(int &place){
 void Map::logicEarth(){
     if(waves == 0 && creatures.size() == 1)
         place = 0;
-    
+
     if(creatures.size() == 1){
         waves--;
         switch(waves){

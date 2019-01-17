@@ -17,6 +17,8 @@ class Sound{
         void play();
         void stop();
         void playOnce();
+        void pause();
+        void resume();
 };
 
 #endif

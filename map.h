@@ -72,6 +72,8 @@ class Map{
         void setPlayerStatusBar(bool status);
         void action(int &place);
         void setPlace(int place);
+        void pauseSound();
+        void resumeSoune();
 
         void loadLobbySound();
         void loadEarthSound();
