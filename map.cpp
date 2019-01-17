@@ -23,6 +23,7 @@ void Map::draw(sf::RenderWindow *window){
         (creatures[i])->action(this);
         (creatures[i])->draw(window);
     }
+    sf::err() << std::endl;
 
     for(i = 0; i < projectiles.size(); i++){
         (projectiles[i])->draw(window);

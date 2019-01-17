@@ -29,7 +29,7 @@ void Creature::canMove(int &step, Level * level){
     int oX, oY;
     if(direction == UP || direction == DOWN){
         oX = x/OBSIZE +1;
-        oY = (direction == UP ? (y-step) : (y+step+height))/OBSIZE +1;       
+        oY = (direction == UP ? (y-step) : (y+step+height))/OBSIZE +1;
         while(oX*OBSIZE <= x+width ){
             if(level->obstacles[oY][oX++] == WALL){
                 step = 0;
@@ -103,7 +103,7 @@ void Creature::action(Map *map){
     }
     if(isFall)
         sf::err()<<"Fall\n";
-    
+
     int dmgDiff = map->isProjectileHit(&hitbox, category);
     if(dmgDiff){
         Creature::hp -= dmgDiff;
@@ -111,6 +111,7 @@ void Creature::action(Map *map){
     if(hp <= 0){
         die(map);
     }
+    sf::err() << hp << "  ;";
 }
 
 bool Creature::isHit(sf::IntRect obst){

@@ -42,16 +42,16 @@ void Window::handleEvents(){
         changePlace(WARDROBE);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
-            map->setSkillsTest(1);
+            map->setSkillsTest(SHOOT);
         //skill 1
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
-        map->setSkillsTest(2);
+        map->setSkillsTest(FIRE1);
         //skill 2
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)){
-        map->setSkillsTest(3);
+        map->setSkillsTest(WATER1);
         //skill 3
     }
 

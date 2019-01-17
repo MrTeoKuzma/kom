@@ -72,7 +72,7 @@ void Player::attack(Map * map, int mX, int mY){
         switch(currentSkill)
         {
         case SHOOT:
-            map->addProjectile(new Projectile(10, x, y, mX, mY, 8, "1lvl/water/1lvl_water.png", ENEMY));
+            map->addProjectile(new Projectile(5, x, y, mX, mY, 8, "1lvl/standard/1lvl_standard.png", ENEMY));
             break;
 
         case FIRE1:
@@ -80,7 +80,7 @@ void Player::attack(Map * map, int mX, int mY){
             break;
 
         case WATER1:
-            map->addProjectile(new Projectile(12, x, y, mX, mY, 6, "1lvl/water/1lvl_water.png", ENEMY));
+            map->addProjectile(new Projectile(8, x, y, mX, mY, 12, "1lvl/water/1lvl_water.png", ENEMY));
             break;
         }
     }
