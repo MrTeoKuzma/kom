@@ -18,6 +18,8 @@ Player::Player(int x, int y, string type){
     Player::hp = 228;
     Player::mp = 176; // nastavimo mp za playera
     Player::mpMax = 176;
+    Player::hpuse=5;
+    Player::hpMax=228;
     Player::category = PLAYER;
     loadImg();
     skills[DASH].setCooldown(1000);
@@ -29,6 +31,7 @@ Player::Player(int x, int y, string type){
     skills[FIRE1].setCooldown(500);
     skills[WATER1].setCooldown(500);
     skills[MPREGEN].setCooldown(1000);
+    skills[ADDHP].setCooldown(500);
 }
 
 void Player::loadImg(){
@@ -61,7 +64,19 @@ int Player::dash(){
     }
     return 0;
 }
+void Player::addHP()
+{
+    if(hpuse>0)
+        if(skills[ADDHP].isReady()){
+            if((hp+25)<hpMax)
+                hp=hp+25;
+            else
+                hp=hpMax;
 
+            skills[ADDHP].use();
+            hpuse--;
+            }
+}
 void Player::turn(int mX, int mY){
     int deltaX = mX - x;
     int deltaY = mY - y;

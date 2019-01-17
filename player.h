@@ -10,6 +10,7 @@
 #define FIRE1 2
 #define WATER1 3
 #define MPREGEN 4
+#define ADDHP 5
 
 
 class Map;
@@ -17,7 +18,7 @@ class Map;
 class Player : public Creature{
     private:
         sf::Vector2i mouseCoord;
-        Skill skills[5];
+        Skill skills[6];
         string type;
         //string skillsList[2];
         bool thereIsSkin[13];
@@ -39,5 +40,6 @@ class Player : public Creature{
         void drawMP(sf::RenderWindow * window);
         void setAttackSpeed(int i);
         void setSkill(int skill);
+        void addHP();
 };
 #endif

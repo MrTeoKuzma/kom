@@ -96,9 +96,7 @@ void Map::loadEarth(string type){
     soundsBackground=0;
     loadEarthSound();
 
-    addCreature(new Enemy01(800, 600));
-    addCreature(new Enemy01(900, 400));
-    addCreature(new Enemy02(500, 300));
+
     addPlayer(new Player(500, 500, type));
     player->setAttackSpeed(800);
 }
@@ -106,12 +104,10 @@ void Map::loadEarth(string type){
 void Map::loadFire(string type){
     setPlayerStatusBar(true);
     loadFireSound();
+    waves= 4;
 
-    addCreature(new Enemy01(800, 600));
-    addCreature(new Enemy01(900, 400));
-    addCreature(new Enemy01(500, 300));
     addPlayer(new Player(500, 500, type));
-    player->setAttackSpeed(1400);
+    player->setAttackSpeed(800);
 }
 
 void Map::loadWater(string type){
@@ -289,6 +285,9 @@ void Map::action(int &place){
         case 2:
             logicEarth();
         break;
+        case 4:
+            logicFire();
+            break;
     }
 }
 
@@ -308,11 +307,31 @@ void Map::logicEarth(){
     }
 }
 
+void Map::logicFire(){
+    if(waves == 0 && creatures.size() == 1)
+        place = 0;
+
+    if(creatures.size() == 1){
+        waves--;
+        switch(waves){
+            default:
+                addCreature(new Enemy02(100, 200));
+                addCreature(new Enemy01(200, 200));
+                addCreature(new Enemy02(300, 200));
+                addCreature(new Enemy01(400, 200));
+                addCreature(new Enemy02(500, 200));
+                addCreature(new Enemy01(600, 200));
+                break;
+        }
+    }
+}
+
 void Map::setPlace(int place){
     Map::place = place;
 }
 
-void Map::addPlayerHP(int h)
+void Map::addPlayerHP()
 {
-    player->setHP(player->getHP()+h);
+
+    player->addHP();
 }

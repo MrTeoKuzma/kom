@@ -49,7 +49,7 @@ class Map{
         void removeCreature(Creature * creature);
         void movePlayer(int dir);
         void dashPlayer();
-        void addPlayerHP(int h);
+        void addPlayerHP();
         void doAttackPlayer(int mX, int mY);
         void loadLevel(string fileName, int dotDmg);
         void loadBackground(string bgImage);
@@ -57,6 +57,7 @@ class Map{
         void loadHUD(string hudimg);
         void loadEarth(string type);
         void logicEarth();
+        void logicFire();
         void loadFire(string type);
         void loadWater(string type);
         void loadLobby(string type);
