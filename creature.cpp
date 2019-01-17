@@ -24,7 +24,14 @@ void Creature::draw(sf::RenderWindow *window){
         animation->setSprite(tmp);
     window->draw(tmp);
 }
-
+void Creature::setHP(int h)
+{
+    hp=h;
+}
+int Creature::getHP()
+{
+    return hp;
+}
 void Creature::canMove(int &step, Level * level){
     int oX, oY;
     if(direction == UP || direction == DOWN){

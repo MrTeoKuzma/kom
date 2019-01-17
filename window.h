@@ -31,6 +31,8 @@ class Window{
         int newplace;
         string PlayerType;
         int loop;
+        int hpuse=3;
+
 
     public:
         Window(int place);

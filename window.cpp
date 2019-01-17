@@ -42,6 +42,9 @@ void Window::handleEvents(){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
         map->movePlayer(DOWN);
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
+        map->addPlayerHP(15);
+    }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         map->dashPlayer();
@@ -370,7 +373,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/earth_BG.png");
             map->loadForeground("img/arena/earth_FG.png");
-            map->loadHUD("img/hud/standard.png");
+            map->loadHUD("img/hud/hud.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth(PlayerType);
             map->setPlace(EARTH);
@@ -381,6 +384,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/lav_BG.png");
             loadMapLevel("levels/level01", 60);
+            map->loadHUD("img/hud/hud.png");
             map->loadFire(PlayerType);
             map->setPlace(FIRE);
             startGame();
@@ -390,6 +394,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/water_BG.png");
             map->loadForeground("img/arena/water_FG.png");
+            map->loadHUD("img/hud/hud.png");
             loadMapLevel("levels/level01", 60);
             map->loadWater(PlayerType);
             map->setPlace(WATER);
@@ -400,6 +405,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/air_BG.png");
             map->loadForeground("img/arena/air_FG.png");
+            map->loadHUD("img/hud/hud.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth(PlayerType);
             map->setPlace(AIR);

@@ -283,3 +283,7 @@ void Map::setPlace(int place){
     Map::place = place;
 }
 
+void Map::addPlayerHP(int h)
+{
+    player->setHP(player->getHP()+h);
+}

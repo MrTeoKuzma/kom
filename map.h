@@ -47,6 +47,7 @@ class Map{
         void removeCreature(Creature * creature);
         void movePlayer(int dir);
         void dashPlayer();
+        void addPlayerHP(int h);
         void doAttackPlayer(int mX, int mY);
         void loadLevel(string fileName, int dotDmg);
         void loadBackground(string bgImage);

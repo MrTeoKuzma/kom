@@ -92,6 +92,8 @@ class Creature{
         void setState(int state, int duration);
         void canMove(int &step, Level * level);
         void move(int dir, Level * level);
+        void setHP(int h);
+        int getHP();
         bool isHit(sf::IntRect obst);
         virtual void action(Map *map);
         virtual void loadImg() = 0;
