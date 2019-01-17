@@ -15,7 +15,7 @@ Player::Player(int x, int y, string type){
     Player::height = hitbox.height;
     Player::step = 4;
     Player::type = type;
-    Player::hp = 300;
+    Player::hp = 228;
     Player::category = PLAYER;
     loadImg();
     skills[DASH].setCooldown(1000);
@@ -124,9 +124,10 @@ void Player::die(Map *map){
 
 void Player::drawHp(sf::RenderWindow * window){
     sf::RectangleShape rect;
-    rect.setSize(sf::Vector2f(hp, 10));
-    rect.setFillColor(sf::Color::Red);
-    rect.setPosition(20, 20);
+    rect.setSize(sf::Vector2f(hp, 15));
+    sf::Color color(142, 0, 0);
+    rect.setFillColor(color);
+    rect.setPosition(52, 8);
     window->draw(rect);
 }
 void Player::setAttackSpeed(int i){

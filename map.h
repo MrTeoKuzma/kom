@@ -19,8 +19,10 @@ class Map{
     private:
         sf::Texture backgroundImage;
         sf::Texture foregroundImage;
+        sf::Texture hudImage;
         sf::Sprite background;
         sf::Sprite foreground;
+        sf::Sprite hud;
         vector <Creature *> creatures;
         vector <Projectile *> projectiles;
         Player *player;
@@ -48,6 +50,7 @@ class Map{
         void loadLevel(string fileName, int dotDmg);
         void loadBackground(string bgImage);
         void loadForeground(string fgImage);
+        void loadHUD(string hudimg);
         void loadEarth();
         void loadFire();
         void loadWater();

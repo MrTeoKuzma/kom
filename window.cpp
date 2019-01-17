@@ -36,6 +36,7 @@ void Window::handleEvents(){
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
         map->doAttackPlayer(pos.x, pos.y);
+        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)){
@@ -260,7 +261,7 @@ void Window::startGame(){
 void Window::startWardrobe(){
     while (window->isOpen()){
         window->clear(sf::Color::Black);
-        handleEventsWelcome();
+        handleEventsWardrobe();
         map->draw(window);
         window->display();
     }
@@ -326,7 +327,6 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/lobby.png");
             loadMapLevel("levels/level01", 60);
             map->loadLobby();
-            map->changeType(PlayerType);
             startLobby();
             break;
 
@@ -355,6 +355,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/earth_BG.png");
             map->loadForeground("img/arena/earth_FG.png");
+            map->loadHUD("img/hud/standard.png");
             loadMapLevel("levels/level01", 60);
             map->loadEarth();
             map->changeType(PlayerType);

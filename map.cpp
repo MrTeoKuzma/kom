@@ -15,9 +15,7 @@ Map::Map(): x(0), y(0), playerStatusBar(0){
 void Map::draw(sf::RenderWindow *window){
     window->draw(background);
     playSound(setBGsound);
-    if(playerStatusBar){
-        player->drawHp(window);
-    }
+
     unsigned int i;
     for(i = 0; i < creatures.size(); i++){
         (creatures[i])->action(this);
@@ -29,6 +27,10 @@ void Map::draw(sf::RenderWindow *window){
         (projectiles[i])->action(this);
     }
     window->draw(foreground);
+    window->draw(hud);
+    if(playerStatusBar){
+        player->drawHp(window);
+    }
 }
 
 void Map::addCreature(Creature *creature){
@@ -80,6 +82,10 @@ void Map::loadBackground(string bgImage){
 void Map::loadForeground(string fgImage){
     foregroundImage.loadFromFile(fgImage);
     foreground.setTexture(foregroundImage, true);
+}
+void Map::loadHUD(string hudimg){
+    hudImage.loadFromFile(hudimg);
+    hud.setTexture(hudImage, true);
 }
 
 void Map::loadEarth(){
