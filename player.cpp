@@ -131,6 +131,7 @@ void Player::drawHp(sf::RenderWindow * window){
 }
 void Player::setAttackSpeed(int i){
     skills[SHOOT].setCooldown(i);
+}
 
 void Player::setSkill(int skill){
     currentSkill = skill;
