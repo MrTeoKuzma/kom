@@ -348,6 +348,7 @@ void Window::changePlace(int place){
             break;
 
         case WARDROBE:
+            map->stopSoundLobby();
             map = new Map();
             map->loadBackground("img/bg/wardrobe.png");
             startWardrobe();
