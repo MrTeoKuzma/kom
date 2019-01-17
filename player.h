@@ -36,6 +36,7 @@ class Player : public Creature{
         bool haveSkin(int index);
         void die(Map *map);
         void drawHp(sf::RenderWindow * window);
+        void drawMP(sf::RenderWindow * window);
         void setAttackSpeed(int i);
         void setSkill(int skill);
 };

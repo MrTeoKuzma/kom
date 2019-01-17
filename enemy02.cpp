@@ -15,7 +15,7 @@ Enemy02::Enemy02(int x, int y){
     hitbox.top = y + top;
     Enemy02::width = hitbox.width;;
     Enemy02::height = hitbox.height;
-    Enemy02::step = 8;
+    Enemy02::step = 6;
     Enemy02::startX = x;
     Enemy02::endX = x+100;
     Enemy02::tick=true;
@@ -45,7 +45,7 @@ void Enemy02::attack(Map * map, int pX, int pY){
     if(skills[SHOOT_E].isReady()){
         setState(ATTACK, 800);
         skills[SHOOT_E].use();
-        map->addProjectile(new Projectile(10, x, y, pX, pY, 6, "1lvl/earth/1lvl_earth.png", PLAYER));
+        map->addProjectile(new Projectile(10, x, y, pX, pY, 6, "1lvl/lightning/1lvl_lightning.png", PLAYER));
     }
 }
 
@@ -73,10 +73,16 @@ void Enemy02::action(Map *map){
         }
         movement.use();
     }
-    attack(map, map->getPlayer()->getX(), map->getPlayer()->getY());
+    if(!(abs(px-x)<50 && abs(py-y)<50))
+    {
+        move(direction, map->getLevel());
+        attack(map, map->getPlayer()->getX(), map->getPlayer()->getY());
+    }
+
+
     //sf::err() se uporabi enako kot cout
     //sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
-    move(direction, map->getLevel());
+
 }
 
 void Enemy02::die(Map * map){

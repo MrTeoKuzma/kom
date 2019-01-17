@@ -29,6 +29,7 @@ void Map::draw(sf::RenderWindow *window){
     window->draw(hud);
     if(playerStatusBar){
         player->drawHp(window);
+        player->drawMP(window);
     }
 }
 

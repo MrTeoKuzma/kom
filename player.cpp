@@ -15,9 +15,9 @@ Player::Player(int x, int y, string type){
     Player::height = hitbox.height;
     Player::step = 4;
     Player::type = type;
-    Player::hp = 10000;
-    Player::mp = 200; // nastavimo mp za playera
-    Player::mpMax = 200;
+    Player::hp = 228;
+    Player::mp = 176; // nastavimo mp za playera
+    Player::mpMax = 176;
     Player::category = PLAYER;
     loadImg();
     skills[DASH].setCooldown(1000);
@@ -158,10 +158,19 @@ void Player::die(Map *map){
 
 void Player::drawHp(sf::RenderWindow * window){
     sf::RectangleShape rect;
-    rect.setSize(sf::Vector2f(hp, 15));
+    rect.setSize(sf::Vector2f(hp, 16));
     sf::Color color(142, 0, 0);
     rect.setFillColor(color);
     rect.setPosition(52, 8);
+    window->draw(rect);
+}
+
+void Player::drawMP(sf::RenderWindow * window){
+    sf::RectangleShape rect;
+    rect.setSize(sf::Vector2f(mp, 16));
+    sf::Color color(0, 34, 165);
+    rect.setFillColor(color);
+    rect.setPosition(59, 32);
     window->draw(rect);
 }
 void Player::setAttackSpeed(int i){

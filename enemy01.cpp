@@ -61,7 +61,7 @@ void Enemy01::action(Map *map){
     sf::err()<<state<<endl;
     int px=map->getPlayer()->getX();
     int py=map->getPlayer()->getY();
-        if(movement.isReady())
+    if(movement.isReady())
     {
         if(tick)
         {
