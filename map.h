@@ -24,7 +24,10 @@ class Map{
         vector <Creature *> creatures;
         vector <Projectile *> projectiles;
         Player *player;
-        Sound *sounds[40];
+        Sound *soundsDash;
+        Sound *soundsBackground;
+        Sound *soundsAttack;
+        Sound *soundsWalk;
         Level *level;
         int x;
         int y;
@@ -53,7 +56,9 @@ class Map{
         void loadWater();
         void loadLobby();
 		void loadSound();
-        void playSound(int i);
+        void playSound(Sound * s);
+        void stopSoundLobby();
+        void stopSoundFightingMap();
         void changeType(int t);
         int isProjectileHit(sf::IntRect * obj, int category);
         Level * getLevel();
