@@ -53,11 +53,13 @@ void Player::loadImg(){
     animation = new Animation(200, left, top, hitbox.width, hitbox.height);
 }
 
-void Player::dash(){
+int Player::dash(){
     if(skills[DASH].isReady()){
         skills[DASH].use();
         state = DASHING;
+        return 1;
     }
+    return 0;
 }
 
 void Player::turn(int mX, int mY){
@@ -66,7 +68,7 @@ void Player::turn(int mX, int mY){
     direction = abs(deltaX) > abs(deltaY) ? (deltaX < 0) * 2 +1 : (deltaY > 0) * 2;
 }
 
-void Player::attack(Map * map, int mX, int mY){
+int Player::attack(Map * map, int mX, int mY){
     turn(mX, mY);
     if(skills[currentSkill].isReady()){
         setState(ATTACK, 800);
@@ -106,7 +108,9 @@ void Player::attack(Map * map, int mX, int mY){
                 break;
             }
         }
+        return 1;
     }
+    return 0;
 }
 
 void Player::action(Map *map){
