@@ -353,8 +353,10 @@ void Window::changePlace(int place){
             startWelcome();
             break;
         case DEAD:
+            map->stopSoundLobby();
             map->stopSoundFightingMap();
             map = new Map();
+            map->loadYouDiedSound();
             map->loadBackground("img/youdead.png");
             startWelcome();
             break;
@@ -401,7 +403,7 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/air_BG.png");
             map->loadForeground("img/arena/air_FG.png");
             loadMapLevel("levels/level01", 60);
-            map->loadEarth(PlayerType);
+            map->loadAir(PlayerType);
             map->setPlace(AIR);
             startGame();
             break;

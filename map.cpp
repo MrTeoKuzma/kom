@@ -122,6 +122,17 @@ void Map::loadWater(string type){
     player->setAttackSpeed(800);
 }
 
+void Map::loadAir(string type){
+    setPlayerStatusBar(true);
+    loadAirSound();
+
+    addCreature(new Enemy01(800, 600));
+    addCreature(new Enemy01(900, 400));
+    addCreature(new Enemy01(500, 300));
+    addPlayer(new Player(500, 500, type));
+    player->setAttackSpeed(800);
+}
+
 void Map::loadLobby(string type){
     loadLobbySound();
     addPlayer(new Player(500, 500, type));
@@ -186,16 +197,31 @@ void Map::loadEarthSound(){
 }
 
 void Map::loadFireSound(){
+    loadAttackSounds();
     soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoKamenju.wav");
-    soundsBackground = new Sound("Glasba/sestaglasba.wav");
-    soundsAttack = new Sound("Zvocni efekti/Napad/Fire.wav");
+    soundsBackground = new Sound("Glasba/petaglasba.wav");
+    soundsAttack = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
     soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
 }
 
 void Map::loadWaterSound(){
+    loadAttackSounds();
     soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoMokremPesku.wav");
-    soundsBackground = new Sound("Glasba/sestaglasba.wav");
-    soundsAttack = new Sound("Zvocni efekti/Napad/Voda.wav");
+    soundsBackground = new Sound("Glasba/sedmaglasba.wav");
+    soundsAttack = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
+    soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
+}
+
+void Map::loadYouDiedSound(){
+    soundsYouDied = new Sound("Zvocni efekti/Akcije/you_died.wav");
+    soundsYouDied->playOnce();
+}
+
+void Map::loadAirSound(){
+    loadAttackSounds();
+    soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+    soundsBackground = new Sound("Glasba/osmaglasba.wav");
+    soundsAttack = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
     soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
 }
 

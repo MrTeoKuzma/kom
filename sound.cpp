@@ -15,6 +15,10 @@ void Sound::play(){
     }
 }
 
+void Sound::playOnce(){
+    sound->play();
+}
+
 void Sound::stop(){
     sound->stop();
     soundTimer.setCooldown(-1);
