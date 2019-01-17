@@ -389,7 +389,7 @@ void Window::changePlace(int place){
             map->stopSoundFightingMap();
             map = new Map();
             map->loadBackground("img/arena/lav_BG.png");
-            loadMapLevel("levels/level01", 60);
+            loadMapLevel("levels/fire", 60);
             map->loadHUD("img/hud/hud.png");
             map->loadFire(PlayerType);
             map->setPlace(FIRE);
