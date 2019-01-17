@@ -55,28 +55,30 @@ class Map{
         void loadBackground(string bgImage);
         void loadForeground(string fgImage);
         void loadHUD(string hudimg);
-        void loadEarth(string type);
         void logicEarth();
         void logicFire();
         void logicWater();
         void logicAir();
-        void loadFire(string type);
-        void loadWater(string type);
-        void loadLobby(string type);
-        void loadAir(string type);
-		void loadSound();
-        void playSound(Sound * s);
         void changeType(string t);
-        void stopSoundFightingMap();
-        void stopSoundLobby();
         int isProjectileHit(sf::IntRect * obj, int category);
         Level * getLevel();
         Player * getPlayer();
         void setPlayerStatusBar(bool status);
         void action(int &place);
         void setPlace(int place);
+
+        void loadFire(string type);
+        void loadWater(string type);
+        void loadLobby(string type);
+        void loadAir(string type);
+        void loadEarth(string type);
+
         void pauseSound();
         void resumeSoune();
+        void stopSoundLobby();
+        void stopSoundFightingMap();
+        void loadSound();
+        void playSound(Sound * s);
 
         void loadLobbySound();
         void loadEarthSound();
