@@ -400,7 +400,7 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/water_BG.png");
             map->loadForeground("img/arena/water_FG.png");
             map->loadHUD("img/hud/hud.png");
-            loadMapLevel("levels/level01", 60);
+            loadMapLevel("levels/water", 60);
             map->loadWater(PlayerType);
             map->setPlace(WATER);
             startGame();
