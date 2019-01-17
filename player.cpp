@@ -148,6 +148,7 @@ void Player::setType(string type){
 }
 bool Player::haveSkin(int index) // preveri ce imamo skin
 {
+    return true;
     return Player::thereIsSkin[index];
 }
 
