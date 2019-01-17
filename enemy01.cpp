@@ -23,7 +23,7 @@ Enemy01::Enemy01(int x, int y){
     Enemy01::hp = 100;
     Enemy01::category = ENEMY;
 
-    skills[SHOOT_E].setCooldown(600);
+    skills[SHOOT_E].setCooldown(3000);
     movement.setCooldown(300);
     loadImg();
 }
@@ -52,7 +52,7 @@ void Enemy01::attack(Map * map, int pX, int pY){
     if(skills[SHOOT_E].isReady()){
         setState(ATTACK, 800);
         skills[SHOOT_E].use();
-        map->addProjectile(new Projectile(10, x, y, pX, pY, 6, "1lvl/fire/1lvl_fire.png", PLAYER));
+        map->addProjectile(new Projectile(10, x, y, pX, pY, 4, "1lvl/storm/1lvl_storm.png", PLAYER));
     }
 }
 
@@ -60,7 +60,7 @@ void Enemy01::action(Map *map){
     Creature::action(map);
     int px=map->getPlayer()->getX();
     int py=map->getPlayer()->getY();
-        if(movement.isReady())
+    if(movement.isReady())
     {
         if(tick)
         {

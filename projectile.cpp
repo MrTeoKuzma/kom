@@ -13,7 +13,7 @@ Projectile::Projectile(int dmg, double x, double y, double mX, double mY, double
         k =  (mY - y) / (mX - x);
         stepX = speed;
     }
-    
+
     if(x > mX){
         k = (y - mY)  / (x - mX) *-1;
         stepX = -speed;
@@ -37,7 +37,7 @@ void Projectile::draw(sf::RenderWindow * window){
 void Projectile::action(Map *map){
     x += stepX / (sqrt(1+k*k));
     y = stepX ? k*abs(x-pX)+pY : y + k;
-    
+
     hitbox.left = x + left;
     hitbox.top = y + top;
 
@@ -62,3 +62,4 @@ int Projectile::getDmg(){
 int Projectile::getTarget(){
     return target;
 }
+

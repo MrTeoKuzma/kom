@@ -19,6 +19,7 @@ void Map::draw(sf::RenderWindow *window){
         (creatures[i])->action(this);
         (creatures[i])->draw(window);
     }
+    sf::err() << std::endl;
 
     for(i = 0; i < projectiles.size(); i++){
         (projectiles[i])->draw(window);
@@ -28,6 +29,7 @@ void Map::draw(sf::RenderWindow *window){
     window->draw(hud);
     if(playerStatusBar){
         player->drawHp(window);
+        player->drawMP(window);
     }
 }
 
@@ -86,7 +88,7 @@ void Map::loadHUD(string hudimg){
     hud.setTexture(hudImage, true);
 }
 
-void Map::loadEarth(){
+void Map::loadEarth(string type){
     setPlayerStatusBar(true);
     soundsBackground=0;
     loadEarthSound();
@@ -94,36 +96,37 @@ void Map::loadEarth(){
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy02(500, 300));
-    addPlayer(new Player(500, 500, "earth"));
+    addPlayer(new Player(500, 500, type));
     player->setAttackSpeed(800);
 }
 
-void Map::loadFire(){
+void Map::loadFire(string type){
     setPlayerStatusBar(true);
     loadFireSound();
 
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
-    addPlayer(new Player(500, 500, "earth"));
+    addPlayer(new Player(500, 500, type));
     player->setAttackSpeed(1400);
 }
 
-void Map::loadWater(){
+void Map::loadWater(string type){
     setPlayerStatusBar(true);
     loadWaterSound();
 
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
-    addPlayer(new Player(500, 500, "earth"));
+    addPlayer(new Player(500, 500, type));
     player->setAttackSpeed(800);
 }
 
-void Map::loadLobby(){
+void Map::loadLobby(string type){
     loadLobbySound();
-    addPlayer(new Player(500, 500, "earth"));
+    addPlayer(new Player(500, 500, type));
 }
+
 Level * Map::getLevel(){
     return level;
 }
@@ -256,67 +259,9 @@ void Map::setSkillsTest(int s)
     sf::err()<<soundsAttack<<std::endl;
 }
 
-void Map::changeType(int t) // spremeni tip skina
+void Map::changeType(string t) // spremeni tip skina
 {
-
-    if (player->haveSkin(t)) // ce ima dolocan skil
-    {
-        switch (t)
-        {
-            case 0:
-                player->setType("standard");
-                break;
-
-            case 1:
-                player->setType("fire");
-                break;
-
-            case 2:
-                player->setType("water");
-                break;
-
-            case 3:
-                player->setType("air");
-                break;
-
-            case 4:
-                player->setType("earth");
-                break;
-
-            case 5:
-                player->setType("lightning");
-                break;
-
-            case 6:
-                player->setType("lava");
-                break;
-
-            case 7:
-                player->setType("storm");
-                break;
-
-            case 8:
-                player->setType("ice");
-                break;
-
-            case 9:
-                player->setType("light");
-                break;
-
-            case 10:
-                player->setType("dark");
-                break;
-
-            case 11:
-                player->setType("psi");
-                break;
-
-            case 12:
-                player->setType("vakuum");
-                break;
-        }
-        player->loadImg();
-    }
+    player->setType(t);
 }
 
 void Map::setPlayerStatusBar(bool status){
@@ -337,3 +282,4 @@ void Map::action(int &place){
 void Map::setPlace(int place){
     Map::place = place;
 }
+

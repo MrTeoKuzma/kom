@@ -29,7 +29,7 @@ class Window{
         Map * map;
         int place;
         int newplace;
-        int PlayerType;
+        string PlayerType;
         int loop;
 
     public:
@@ -50,7 +50,5 @@ class Window{
         void loadMapLevel(string fileName, int dotDmg);
         Map * getMap();
         void changePlace(int place);
-        int getPlayerType();
-        void setPlayerType(int t);
 };
 #endif

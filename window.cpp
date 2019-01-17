@@ -2,6 +2,7 @@
 
 Window::Window(int place):title(TITLE), width(WINWIDTH), height(WINHEIGHT), place(place){
     loop = true;
+    PlayerType = "standard";
     window = new sf::RenderWindow(sf::VideoMode(width, height), title);
     window->setFramerateLimit(60);
     changePlace(place);
@@ -11,7 +12,7 @@ Window::Window(int place):title(TITLE), width(WINWIDTH), height(WINHEIGHT), plac
 void Window::pauseEvents(){
     while(window->pollEvent(event))
     {
-         if (event.type == sf::Event::Closed)
+        if (event.type == sf::Event::Closed)
             window->close();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
@@ -57,16 +58,16 @@ void Window::handleEvents(){
         //changePlace(WARDROBE);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
-            map->setSkillsTest(1);
+            map->setSkillsTest(SHOOT);
         //skill 1
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)){
-        map->setSkillsTest(2);
+        map->setSkillsTest(FIRE1);
         //skill 2
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)){
-        map->setSkillsTest(3);
+        map->setSkillsTest(WATER1);
         //skill 3
     }
 
@@ -178,33 +179,32 @@ void Window::handleEventsWardrobe(){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
         //sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
         if(pos.x>321 && pos.x<449 && pos.y>169 && pos.y<297)
-            PlayerType=1;
+            PlayerType = "fire";
         if(pos.x>467 && pos.x<599 && pos.y>169 && pos.y<297)
-            PlayerType=2;
+            PlayerType = "water";
         if(pos.x>617 && pos.x<746 && pos.y>169 && pos.y<297)
-            PlayerType=3;
+            PlayerType = "air";
         if(pos.x>766 && pos.x<893 && pos.y>169 && pos.y<297)
-            PlayerType=4;
-
+            PlayerType = "earth";
         if(pos.x>321 && pos.x<449 && pos.y>316 && pos.y<446)
-            PlayerType=5;
-        if(pos.x>467 && pos.x<599 && pos.y>316 && pos.y<446)
-            PlayerType=6;
-        if(pos.x>617 && pos.x<746 && pos.y>316 && pos.y<446)
-            PlayerType=7;
-        if(pos.x>766 && pos.x<893 && pos.y>316 && pos.y<446)
-            PlayerType=8;
-        if(pos.x>912 && pos.x<1043 && pos.y>316 && pos.y<446)
-            PlayerType=0;
+            PlayerType = "lightning";
 
+        if(pos.x>467 && pos.x<599 && pos.y>316 && pos.y<446)
+            PlayerType = "lava";
+        if(pos.x>617 && pos.x<746 && pos.y>316 && pos.y<446)
+            PlayerType = "storm";
+        if(pos.x>766 && pos.x<893 && pos.y>316 && pos.y<446)
+            PlayerType = "ice";
+        if(pos.x>912 && pos.x<1043 && pos.y>316 && pos.y<446)
+            PlayerType = "standard";
         if(pos.x>321 && pos.x<449 && pos.y>464 && pos.y<594)
-            PlayerType=9;
+            PlayerType = "light";
         if(pos.x>467 && pos.x<599 && pos.y>464 && pos.y<594)
-            PlayerType=10;
+            PlayerType = "dark";
         if(pos.x>617 && pos.x<746 && pos.y>464 && pos.y<594)
-            PlayerType=11;
+            PlayerType = "psi";
         if(pos.x>766 && pos.x<893 && pos.y>464 && pos.y<594)
-            PlayerType=12;
+            PlayerType = "vakuum";
         if(pos.x>1170 && pos.x<1320 && pos.y>640 && pos.y<702)
             changePlace(LOBBY);
 
@@ -255,7 +255,7 @@ void Window::handleEventsArenaSelect(){
 
         if(pos.x>1037 && pos.x<1184 && pos.y>720 && pos.y<782)
             changePlace(LOBBY);
-        }
+    }
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)){
         //right
@@ -317,7 +317,7 @@ void Window::checkNewplace(){
 }
 
 void Window::loadMapImg(string image){
-   // map = new Map(image);
+    // map = new Map(image);
 }
 
 Map * Window::getMap(){
@@ -326,14 +326,6 @@ Map * Window::getMap(){
 
 void Window::loadMapLevel(string fileName, int dotDmg){
     map->loadLevel(fileName, dotDmg);
-}
-int Window::getPlayerType()
-{
-    return PlayerType;
-}
-void Window::setPlayerType(int t)
-{
-    PlayerType=t;
 }
 
 void Window::changePlace(int place){
@@ -345,7 +337,7 @@ void Window::changePlace(int place){
             map=new Map();
             map->loadBackground("img/arena/lobby.png");
             loadMapLevel("levels/level01", 60);
-            map->loadLobby();
+            map->loadLobby(PlayerType);
             startLobby();
             break;
 
@@ -380,8 +372,7 @@ void Window::changePlace(int place){
             map->loadForeground("img/arena/earth_FG.png");
             map->loadHUD("img/hud/standard.png");
             loadMapLevel("levels/level01", 60);
-            map->loadEarth();
-            map->changeType(PlayerType);
+            map->loadEarth(PlayerType);
             map->setPlace(EARTH);
             startGame();
             break;
@@ -390,8 +381,7 @@ void Window::changePlace(int place){
             map = new Map();
             map->loadBackground("img/arena/lav_BG.png");
             loadMapLevel("levels/level01", 60);
-            map->loadFire();
-            map->changeType(PlayerType);
+            map->loadFire(PlayerType);
             map->setPlace(FIRE);
             startGame();
             break;
@@ -401,8 +391,7 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/water_BG.png");
             map->loadForeground("img/arena/water_FG.png");
             loadMapLevel("levels/level01", 60);
-            map->loadWater();
-            map->changeType(PlayerType);
+            map->loadWater(PlayerType);
             map->setPlace(WATER);
             startGame();
             break;
@@ -412,8 +401,7 @@ void Window::changePlace(int place){
             map->loadBackground("img/arena/air_BG.png");
             map->loadForeground("img/arena/air_FG.png");
             loadMapLevel("levels/level01", 60);
-            map->loadEarth();
-            map->changeType(PlayerType);
+            map->loadEarth(PlayerType);
             map->setPlace(AIR);
             startGame();
             break;

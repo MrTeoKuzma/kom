@@ -10,8 +10,9 @@
 class Map;
 class Projectile{
     private:
-        
+
         int dmg;
+        int mpCost; // koliko skill ponuca mp
         double radius;
         double stepX;
         double k;
@@ -36,6 +37,7 @@ class Projectile{
         sf::IntRect * getHitbox();
         int getDmg();
         int getTarget();
+
 };
 
 #endif

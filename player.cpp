@@ -15,7 +15,9 @@ Player::Player(int x, int y, string type){
     Player::height = hitbox.height;
     Player::step = 4;
     Player::type = type;
-    Player::hp = 10000;
+    Player::hp = 228;
+    Player::mp = 176; // nastavimo mp za playera
+    Player::mpMax = 176;
     Player::category = PLAYER;
     loadImg();
     skills[DASH].setCooldown(1000);
@@ -23,9 +25,10 @@ Player::Player(int x, int y, string type){
     skills[DASH].data[1] = 10; //dashStep
     skills[DASH].data[2] = 0; //current
     currentSkill = SHOOT;
-    skills[SHOOT].setCooldown(800);
+    skills[SHOOT].setCooldown(500);
     skills[FIRE1].setCooldown(500);
     skills[WATER1].setCooldown(500);
+    skills[MPREGEN].setCooldown(1000);
 }
 
 void Player::loadImg(){
@@ -72,16 +75,36 @@ void Player::attack(Map * map, int mX, int mY){
         switch(currentSkill)
         {
         case SHOOT:
-            map->addProjectile(new Projectile(10, x, y, mX, mY, 8, "1lvl/water/1lvl_water.png", ENEMY));
+
+            map->addProjectile(new Projectile(5, x, y, mX, mY, 8, "1lvl/standard/1lvl_standard.png", ENEMY));
             break;
 
         case FIRE1:
-            map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/fire/1lvl_fire.png", ENEMY));
-            break;
+            if (mp - 20 >= 0)
+            {
+                mp -= 20;
+                map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/fire/1lvl_fire.png", ENEMY));
+                break;
+            }
+            else
+            {
+                //currentSkill = SHOOT;
+                break;
+            }
+
 
         case WATER1:
-            map->addProjectile(new Projectile(12, x, y, mX, mY, 6, "1lvl/water/1lvl_water.png", ENEMY));
-            break;
+            if (mp - 20 >= 0)
+            {
+                mp -= 20;
+                map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/water/1lvl_water.png", ENEMY));
+                break;
+            }
+            else
+            {
+                //currentSkill = SHOOT;
+                break;
+            }
         }
     }
 }
@@ -100,6 +123,16 @@ void Player::action(Map *map){
             y += Y_DIFF(tmpStep, direction);
         }
     }
+    if (skills[MPREGEN].isReady())
+    {
+        if (mp < mpMax)
+        {
+            skills[MPREGEN].use();
+            mp += 10;
+        }
+
+        if (mp >= mpMax) mp = mpMax;
+    }
 }
 
 int Player::getX(){
@@ -115,6 +148,7 @@ void Player::setType(string type){
 }
 bool Player::haveSkin(int index) // preveri ce imamo skin
 {
+    return true;
     return Player::thereIsSkin[index];
 }
 
@@ -124,10 +158,19 @@ void Player::die(Map *map){
 
 void Player::drawHp(sf::RenderWindow * window){
     sf::RectangleShape rect;
-    rect.setSize(sf::Vector2f(hp, 15));
+    rect.setSize(sf::Vector2f(hp, 16));
     sf::Color color(142, 0, 0);
     rect.setFillColor(color);
     rect.setPosition(52, 8);
+    window->draw(rect);
+}
+
+void Player::drawMP(sf::RenderWindow * window){
+    sf::RectangleShape rect;
+    rect.setSize(sf::Vector2f(mp, 16));
+    sf::Color color(0, 34, 165);
+    rect.setFillColor(color);
+    rect.setPosition(59, 32);
     window->draw(rect);
 }
 void Player::setAttackSpeed(int i){
@@ -137,3 +180,4 @@ void Player::setAttackSpeed(int i){
 void Player::setSkill(int skill){
     currentSkill = skill;
 }
+
