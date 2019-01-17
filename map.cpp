@@ -61,13 +61,15 @@ void Map::movePlayer(int dir){
 }
 
 void Map::dashPlayer(){
-    playSound(soundsDash);
-    player->dash();
+    if(player->dash()){
+        playSound(soundsDash);
+    }
 }
 
 void Map::doAttackPlayer(int mX, int mY){
-    player->attack(this, mX, mY);
-    playSound(soundsAttack);
+    if(player->attack(this, mX, mY)){
+        playSound(soundsAttack);
+    }
 }
 
 void Map::loadLevel(string fileName, int dotDmg){
