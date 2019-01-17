@@ -20,7 +20,7 @@ Enemy01::Enemy01(int x, int y){
     Enemy01::startX = x;
     Enemy01::endX = x+100;
     Enemy01::tick=true;
-    Enemy01::hp = 10;
+    Enemy01::hp = 80;
     Enemy01::category = ENEMY;
 
     skills[SHOOT_E].setCooldown(3000);
