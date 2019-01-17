@@ -29,6 +29,7 @@ class Map{
         Sound *soundsDash;
         Sound *soundsBackground;
         Sound *soundsAttack;
+        Sound *soundsYouDied;
         vector <Sound *> attackSound;
         Sound *soundsWalk;
         Level *level;
@@ -36,6 +37,7 @@ class Map{
         int y;
         bool playerStatusBar;
         int place;
+        int waves;
 
     public:
         Map();
@@ -54,9 +56,11 @@ class Map{
         void loadForeground(string fgImage);
         void loadHUD(string hudimg);
         void loadEarth(string type);
+        void logicEarth();
         void loadFire(string type);
         void loadWater(string type);
         void loadLobby(string type);
+        void loadAir(string type);
 		void loadSound();
         void playSound(Sound * s);
         void changeType(string t);
@@ -74,6 +78,8 @@ class Map{
         void loadFireSound();
         void loadWaterSound();
         void loadAttackSounds();
+        void loadYouDiedSound();
+        void loadAirSound();
 
         void setSkillsTest(int s);
 };

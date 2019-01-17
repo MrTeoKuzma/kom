@@ -16,6 +16,7 @@ class Sound{
         Sound(string filename);
         void play();
         void stop();
+        void playOnce();
 };
 
 #endif

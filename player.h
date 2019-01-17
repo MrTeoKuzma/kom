@@ -26,9 +26,9 @@ class Player : public Creature{
     public:
         Player(int x, int y, string type);
         void loadImg();
-        void dash();
+        int dash();
         void turn(int mX, int mY);
-        void attack(Map * map, int mX, int mY);
+        int attack(Map * map, int mX, int mY);
         void action(Map *map);
         int getX();
         int getY();
