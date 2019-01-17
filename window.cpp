@@ -49,7 +49,7 @@ void Window::handleEvents(){
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
         map->doAttackPlayer(pos.x, pos.y);
-        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
+        //sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){

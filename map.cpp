@@ -175,6 +175,7 @@ void Map::loadLobbySound(){
     soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
 }
 void Map::loadEarthSound(){
+    loadAttackSounds();
     soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
     soundsBackground = new Sound("Glasba/osmaglasba.wav");
     soundsAttack = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
@@ -184,7 +185,7 @@ void Map::loadEarthSound(){
 void Map::loadFireSound(){
     soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoKamenju.wav");
     soundsBackground = new Sound("Glasba/sestaglasba.wav");
-    soundsAttack = new Sound("Zvocni efekti/Napad/Ogenj.wav");
+    soundsAttack = new Sound("Zvocni efekti/Napad/Fire.wav");
     soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
 }
 
@@ -193,6 +194,12 @@ void Map::loadWaterSound(){
     soundsBackground = new Sound("Glasba/sestaglasba.wav");
     soundsAttack = new Sound("Zvocni efekti/Napad/Voda.wav");
     soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
+}
+
+void Map::loadAttackSounds(){
+    attackSound.push_back(new Sound ("Zvocni efekti/Napad/Psihokineza.wav"));
+    attackSound.push_back(new Sound ("Zvocni efekti/Napad/Fire.wav"));
+    attackSound.push_back(soundsAttack = new Sound("Zvocni efekti/Napad/Voda.wav"));
 }
 
 void Map::playSound(Sound *s){
@@ -229,13 +236,24 @@ void Map::stopSoundFightingMap(){
     }
 }
 
-void Map::setBackgroundSound(int i){
-    setBGsound = i;
-}
 
 void Map::setSkillsTest(int s)
 {
+    sf::err()<<soundsAttack<<std::endl;
     player->setSkill(s);
+    switch(s){
+    case 1:
+        soundsAttack = attackSound[0];
+        break;
+    case 2:
+        soundsAttack = attackSound[1];
+        break;
+
+    case 3:
+        soundsAttack = attackSound[2];
+        break;
+    }
+    sf::err()<<soundsAttack<<std::endl;
 }
 
 void Map::changeType(int t) // spremeni tip skina

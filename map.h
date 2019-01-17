@@ -29,15 +29,13 @@ class Map{
         Sound *soundsDash;
         Sound *soundsBackground;
         Sound *soundsAttack;
+        vector <Sound *> attackSound;
         Sound *soundsWalk;
         Level *level;
         int x;
         int y;
         bool playerStatusBar;
         int place;
-        int setBGsound;
-        int walkSound;
-        int attackSound;
 
     public:
         Map();
@@ -74,7 +72,7 @@ class Map{
         void loadEarthSound();
         void loadFireSound();
         void loadWaterSound();
-        void setBackgroundSound(int i);
+        void loadAttackSounds();
 
         void setSkillsTest(int s);
 };
