@@ -271,7 +271,7 @@ void Window::startGame(){
         window->display();
         checkNewplace();
         while(!loop){
-            pauseEvents();   
+            pauseEvents();
         }
     }
 
@@ -341,6 +341,7 @@ void Window::changePlace(int place){
     Window::place = place;
     switch(place){
         case LOBBY:
+            map->stopSoundLobby();
             map=new Map();
             map->loadBackground("img/arena/lobby.png");
             loadMapLevel("levels/level01", 60);
@@ -360,16 +361,20 @@ void Window::changePlace(int place){
             startWelcome();
             break;
         case DEAD:
+            map->stopSoundFightingMap();
             map = new Map();
             map->loadBackground("img/youdead.png");
             startWelcome();
             break;
         case ARENASELECT:
+            map->stopSoundLobby();
             map=new Map();
             map->loadBackground("img/bg/arenaselect.png");
+            //map->loadEarthSound();
             startArenaSelect();
             break;
         case EARTH:
+            map->stopSoundFightingMap();
             map = new Map();
             map->loadBackground("img/arena/earth_BG.png");
             map->loadForeground("img/arena/earth_FG.png");
@@ -381,6 +386,7 @@ void Window::changePlace(int place){
             startGame();
             break;
         case FIRE:
+            map->stopSoundFightingMap();
             map = new Map();
             map->loadBackground("img/arena/lav_BG.png");
             loadMapLevel("levels/level01", 60);
@@ -390,6 +396,7 @@ void Window::changePlace(int place){
             startGame();
             break;
         case WATER:
+            map->stopSoundFightingMap();
             map = new Map();
             map->loadBackground("img/arena/water_BG.png");
             map->loadForeground("img/arena/water_FG.png");
@@ -400,6 +407,7 @@ void Window::changePlace(int place){
             startGame();
             break;
         case AIR:
+            map->stopSoundFightingMap();
             map = new Map();
             map->loadBackground("img/arena/air_BG.png");
             map->loadForeground("img/arena/air_FG.png");

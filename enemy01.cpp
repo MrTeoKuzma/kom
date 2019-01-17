@@ -3,6 +3,7 @@
 #include "skill.h"
 #include "player.h"
 
+
 Enemy01::Enemy01(int x, int y){
     Enemy01::direction = LEFT;
     Enemy01::x = x;
@@ -38,6 +39,12 @@ void Enemy01::loadImg(){
     sprite[RIGHT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/right.png");
     sprite[DOWN][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/back.png");
     sprite[LEFT][RUNNING][NOTHING][0].loadFromFile("img/enemy/schooler/mv/left.png");
+
+
+    sprite[UP][ATTACK][NOTHING][0].loadFromFile("img/enemy/schooler/atck/front.png");
+    sprite[RIGHT][ATTACK][NOTHING][0].loadFromFile("img/enemy/schooler/atck/right.png");
+    sprite[DOWN][ATTACK][NOTHING][0].loadFromFile("img/enemy/schooler/atck/back.png");
+    sprite[LEFT][ATTACK][NOTHING][0].loadFromFile("img/enemy/schooler/atck/left.png");
     animation = new Animation(200, top, left, hitbox.width, hitbox.height);
 }
 
@@ -51,9 +58,10 @@ void Enemy01::attack(Map * map, int pX, int pY){
 
 void Enemy01::action(Map *map){
     Creature::action(map);
+    sf::err()<<state<<endl;
     int px=map->getPlayer()->getX();
     int py=map->getPlayer()->getY();
-    if(movement.isReady())
+        if(movement.isReady())
     {
         if(tick)
         {
@@ -73,10 +81,13 @@ void Enemy01::action(Map *map){
         }
         movement.use();
     }
+    if(!(abs(px-x)<200 && abs(py-y)<200))
+        move(direction, map->getLevel());
+    //else
+        //setState(NORMAL, 50);
     attack(map, map->getPlayer()->getX(), map->getPlayer()->getY());
     //sf::err() se uporabi enako kot cout
     //sf::err()<<"("<<map->getPlayer()->getX()<<","<<map->getPlayer()->getY()<<")"; //primer pridobitve koordinat igralca
-    move(direction, map->getLevel());
 }
 
 void Enemy01::die(Map * map){

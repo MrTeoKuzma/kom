@@ -8,13 +8,14 @@ using namespace std;
 
 class Sound{
     private:
-        sf::SoundBuffer buffer;
-        sf::Sound sound;
+        sf::SoundBuffer *buffer;
+        sf::Sound *sound;
         Skill soundTimer;
-        
+
     public:
         Sound(string filename);
         void play();
+        void stop();
 };
 
 #endif

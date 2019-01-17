@@ -2,19 +2,17 @@
 #include "creature.h"
 #include "player.h"
 #include "enemy01.h"
+#include "enemy02.h"
 #include "projectile.h"
 #include <algorithm>
 #include <SFML/Audio.hpp>
 
-Map::Map(): x(0), y(0), playerStatusBar(0){
-    setBGsound = -1;
-    walkSound = -1;
-    attackSound = -1;
+Map::Map(): x(0), y(0), playerStatusBar(0), soundsBackground(0), soundsAttack(0), soundsDash(0), soundsWalk(0){
 }
 
 void Map::draw(sf::RenderWindow *window){
     window->draw(background);
-    playSound(setBGsound);
+    playSound(soundsBackground);
 
     unsigned int i;
     for(i = 0; i < creatures.size(); i++){
@@ -57,18 +55,18 @@ void Map::removeCreature(Creature * creature){
 }
 
 void Map::movePlayer(int dir){
-    playSound(walkSound);
+    playSound(soundsWalk);
     player->move(dir, level);
 }
 
 void Map::dashPlayer(){
-    playSound(DASHSOUND);
+    playSound(soundsDash);
     player->dash();
 }
 
 void Map::doAttackPlayer(int mX, int mY){
     player->attack(this, mX, mY);
-    playSound(attackSound);
+    playSound(soundsAttack);
 }
 
 void Map::loadLevel(string fileName, int dotDmg){
@@ -91,13 +89,12 @@ void Map::loadHUD(string hudimg){
 
 void Map::loadEarth(){
     setPlayerStatusBar(true);
+    soundsBackground=0;
     loadEarthSound();
-    setBackgroundSound(GLASBA008SOUND);
-    walkSound=HOJAPOTRAVISOUND;
-    attackSound = PSIHOKINEZASOUND;
+
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
-    addCreature(new Enemy01(500, 300));
+    addCreature(new Enemy02(500, 300));
     addPlayer(new Player(500, 500, "earth"));
     player->setAttackSpeed(800);
 }
@@ -105,9 +102,7 @@ void Map::loadEarth(){
 void Map::loadFire(){
     setPlayerStatusBar(true);
     loadFireSound();
-    walkSound=HOJAPOKAMENJUSOUND;
-    attackSound = OGENJSOUND;
-    setBackgroundSound(GLASBA006SOUND);
+
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
@@ -118,9 +113,7 @@ void Map::loadFire(){
 void Map::loadWater(){
     setPlayerStatusBar(true);
     loadWaterSound();
-    walkSound=HOJAPOMOKREMPESKUSOUND;
-    attackSound = VODASOUND;
-    setBackgroundSound(GLASBA006SOUND);
+
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
     addCreature(new Enemy01(500, 300));
@@ -130,8 +123,6 @@ void Map::loadWater(){
 
 void Map::loadLobby(){
     loadLobbySound();
-    walkSound = HOJAPOTRAVISOUND;
-    setBackgroundSound(GLASBA006SOUND);
     addPlayer(new Player(500, 500, "earth"));
 }
 Level * Map::getLevel(){
@@ -181,37 +172,64 @@ void Map::loadSound() {
 }
 */
 void Map::loadLobbySound(){
-    sounds[GLASBA006SOUND] = new Sound("Glasba/sestaglasba.wav");
-    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+    soundsBackground = new Sound("Glasba/sestaglasba.wav");
+    soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
 }
 void Map::loadEarthSound(){
-    sounds[HOJAPOTRAVISOUND] = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
-    sounds[GLASBA008SOUND] = new Sound("Glasba/osmaglasba.wav");
-    sounds[PSIHOKINEZASOUND] = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
-    sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
+    soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoTravi.wav");
+    soundsBackground = new Sound("Glasba/osmaglasba.wav");
+    soundsAttack = new Sound("Zvocni efekti/Napad/Psihokineza.wav");
+    soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
 }
 
 void Map::loadFireSound(){
-    sounds[HOJAPOKAMENJUSOUND] = new Sound("Zvocni efekti/Hoja/HojaPoKamenju.wav");
-    sounds[GLASBA006SOUND] = new Sound("Glasba/sestaglasba.wav");
-    sounds[OGENJSOUND] = new Sound("Zvocni efekti/Napad/Ogenj.wav");
-    sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
+    soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoKamenju.wav");
+    soundsBackground = new Sound("Glasba/sestaglasba.wav");
+    soundsAttack = new Sound("Zvocni efekti/Napad/Ogenj.wav");
+    soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
 }
 
 void Map::loadWaterSound(){
-    sounds[HOJAPOMOKREMPESKUSOUND] = new Sound("Zvocni efekti/Hoja/HojaPoMokremPesku.wav");
-    sounds[GLASBA006SOUND] = new Sound("Glasba/sestaglasba.wav");
-    sounds[VODASOUND] = new Sound("Zvocni efekti/Napad/Voda.wav");
-    sounds[DASHSOUND] = new Sound("Zvocni efekti/Akcije/Dash.wav");
+    soundsWalk = new Sound("Zvocni efekti/Hoja/HojaPoMokremPesku.wav");
+    soundsBackground = new Sound("Glasba/sestaglasba.wav");
+    soundsAttack = new Sound("Zvocni efekti/Napad/Voda.wav");
+    soundsDash = new Sound("Zvocni efekti/Akcije/Dash.wav");
 }
 
-void Map::playSound(int i){
-    if(i>=0)
-    {
-        sounds[i]->play();
+void Map::playSound(Sound *s){
+    if(s){
+        s->play();
     }
-
 }
+
+void Map::stopSoundLobby(){
+    if(soundsBackground){
+        soundsWalk->stop();
+        soundsBackground->stop();
+        delete soundsBackground;
+        delete soundsWalk;
+        soundsBackground = 0;
+        soundsWalk = 0;
+    }
+}
+
+void Map::stopSoundFightingMap(){
+    if(soundsBackground){
+        soundsWalk->stop();
+        soundsBackground->stop();
+        soundsAttack->stop();
+        soundsDash->stop();
+        delete soundsAttack;
+        delete soundsDash;
+        delete soundsBackground;
+        delete soundsWalk;
+        soundsBackground = 0;
+        soundsWalk = 0;
+        soundsAttack = 0;
+        soundsDash = 0;
+    }
+}
+
 void Map::setBackgroundSound(int i){
     setBGsound = i;
 }

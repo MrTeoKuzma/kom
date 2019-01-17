@@ -15,7 +15,7 @@ Player::Player(int x, int y, string type){
     Player::height = hitbox.height;
     Player::step = 4;
     Player::type = type;
-    Player::hp = 228;
+    Player::hp = 10000;
     Player::category = PLAYER;
     loadImg();
     skills[DASH].setCooldown(1000);
