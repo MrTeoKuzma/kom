@@ -2,6 +2,7 @@
 #include "creature.h"
 #include "player.h"
 #include "enemy01.h"
+#include "enemy02.h"
 #include "projectile.h"
 #include <algorithm>
 #include <SFML/Audio.hpp>
@@ -96,7 +97,7 @@ void Map::loadEarth(){
     attackSound = PSIHOKINEZASOUND;
     addCreature(new Enemy01(800, 600));
     addCreature(new Enemy01(900, 400));
-    addCreature(new Enemy01(500, 300));
+    addCreature(new Enemy02(500, 300));
     addPlayer(new Player(500, 500, "earth"));
     player->setAttackSpeed(800);
 }
