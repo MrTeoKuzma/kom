@@ -16,6 +16,8 @@ Player::Player(int x, int y, string type){
     Player::step = 4;
     Player::type = type;
     Player::hp = 10000;
+    Player::mp = 200; // nastavimo mp za playera
+    Player::mpMax = 200;
     Player::category = PLAYER;
     loadImg();
     skills[DASH].setCooldown(1000);
@@ -23,9 +25,10 @@ Player::Player(int x, int y, string type){
     skills[DASH].data[1] = 10; //dashStep
     skills[DASH].data[2] = 0; //current
     currentSkill = SHOOT;
-    skills[SHOOT].setCooldown(800);
+    skills[SHOOT].setCooldown(500);
     skills[FIRE1].setCooldown(500);
     skills[WATER1].setCooldown(500);
+    skills[MPREGEN].setCooldown(1000);
 }
 
 void Player::loadImg(){
@@ -72,16 +75,36 @@ void Player::attack(Map * map, int mX, int mY){
         switch(currentSkill)
         {
         case SHOOT:
+
             map->addProjectile(new Projectile(5, x, y, mX, mY, 8, "1lvl/standard/1lvl_standard.png", ENEMY));
             break;
 
         case FIRE1:
-            map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/fire/1lvl_fire.png", ENEMY));
-            break;
+            if (mp - 20 >= 0)
+            {
+                mp -= 20;
+                map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/fire/1lvl_fire.png", ENEMY));
+                break;
+            }
+            else
+            {
+                //currentSkill = SHOOT;
+                break;
+            }
+
 
         case WATER1:
-            map->addProjectile(new Projectile(8, x, y, mX, mY, 12, "1lvl/water/1lvl_water.png", ENEMY));
-            break;
+            if (mp - 20 >= 0)
+            {
+                mp -= 20;
+                map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/water/1lvl_water.png", ENEMY));
+                break;
+            }
+            else
+            {
+                //currentSkill = SHOOT;
+                break;
+            }
         }
     }
 }
@@ -99,6 +122,16 @@ void Player::action(Map *map){
             x += X_DIFF(tmpStep, direction);
             y += Y_DIFF(tmpStep, direction);
         }
+    }
+    if (skills[MPREGEN].isReady())
+    {
+        if (mp < mpMax)
+        {
+            skills[MPREGEN].use();
+            mp += 10;
+        }
+
+        if (mp >= mpMax) mp = mpMax;
     }
 }
 
@@ -137,3 +170,4 @@ void Player::setAttackSpeed(int i){
 void Player::setSkill(int skill){
     currentSkill = skill;
 }
+

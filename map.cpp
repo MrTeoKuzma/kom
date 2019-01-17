@@ -320,3 +320,4 @@ void Map::action(int &place){
 void Map::setPlace(int place){
     Map::place = place;
 }
+
