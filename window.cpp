@@ -13,6 +13,10 @@ void Window::pauseEvents(){
         if (event.type == sf::Event::Closed)
             window->close();
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+        loop = true;
+        changePlace(LOBBY);
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         loop = true;
     }

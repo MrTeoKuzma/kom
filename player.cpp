@@ -15,7 +15,7 @@ Player::Player(int x, int y, string type){
     Player::height = hitbox.height;
     Player::step = 5;
     Player::type = type;
-    Player::hp = 2280;
+    Player::hp = 228;
     Player::mp = 176; // nastavimo mp za playera
     Player::mpMax = 176;
     Player::hpuse=5;
