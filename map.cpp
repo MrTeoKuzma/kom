@@ -299,7 +299,7 @@ void Map::logicEarth(){
 
     if(creatures.size() == 1){
         switch(waves){
-            default:
+            case 2:
                 addCreature(new Enemy01(800, 500));
                 addCreature(new Enemy01(500, 300));
                 break;
@@ -308,6 +308,8 @@ void Map::logicEarth(){
                 break;
             case 1:
                 addCreature(new Enemy02(700, 100));
+                break;
+            default:
                 break;
         }
         waves--;
@@ -319,7 +321,7 @@ void Map::logicWater(){
 
     if(creatures.size() == 1){
         switch(waves){
-            default:
+            case 2:
                 addCreature(new Enemy01(800, 600));
                 addCreature(new Enemy01(900, 400));
                 addCreature(new Enemy01(500, 300));
@@ -332,6 +334,8 @@ void Map::logicWater(){
                 addCreature(new Enemy01(350, 100));
                 addCreature(new Enemy02(900, 100));
                 break;
+            default:
+                break;
         }
         waves--;
     }
@@ -343,10 +347,10 @@ void Map::logicAir(){
 
     if(creatures.size() == 1){
         switch(waves){
-            default:
-                addCreature(new Enemy01(800, 500));
-                addCreature(new Enemy01(900, 400));
-                addCreature(new Enemy01(500, 300));
+            case 5:
+                addCreature(new Enemy01(300, 200));
+                addCreature(new Enemy01(500, 250));
+                addCreature(new Enemy01(600, 200));
                 break;
             case 4:
                 addCreature(new Enemy01(900, 400));
@@ -367,6 +371,8 @@ void Map::logicAir(){
                 addCreature(new Enemy02(350, 100));
                 addCreature(new Enemy01(500, 300));
                 addCreature(new Enemy02(900, 100));
+                break;
+            default:
                 break;
         }
         waves--;
