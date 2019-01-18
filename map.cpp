@@ -19,7 +19,6 @@ void Map::draw(sf::RenderWindow *window){
         (creatures[i])->action(this);
         (creatures[i])->draw(window);
     }
-    sf::err() << std::endl;
 
     for(i = 0; i < projectiles.size(); i++){
         (projectiles[i])->draw(window);
@@ -30,6 +29,7 @@ void Map::draw(sf::RenderWindow *window){
     if(playerStatusBar){
         player->drawHp(window);
         player->drawMP(window);
+        player->drawCurrentSkill(window);
     }
 }
 
@@ -231,11 +231,10 @@ void Map::stopSoundFightingMap(){
 }
 
 void Map::pauseSound(){
-    if(soundsBackground)
-        soundsBackground->pause();
-        soundsAttack->pause();
-        soundsDash->pause();
-        soundsWalk->pause();
+    soundsBackground->pause();
+    soundsAttack->pause();
+    soundsDash->pause();
+    soundsWalk->pause();
 }
 
 void Map::resumeSoune(){
@@ -247,7 +246,6 @@ void Map::resumeSoune(){
 
 void Map::setSkillsTest(int s)
 {
-    sf::err()<<soundsAttack<<std::endl;
     player->setSkill(s);
     switch(s){
     case 1:
@@ -261,7 +259,6 @@ void Map::setSkillsTest(int s)
         soundsAttack = attackSound[2];
         break;
     }
-    sf::err()<<soundsAttack<<std::endl;
 }
 
 void Map::changeType(string t) // spremeni tip skina

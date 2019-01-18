@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
-    Window * window = new Window(WELCOME);
+    Window * window = new Window();
+    window->changePlace(WELCOME);
     return 0;
 }

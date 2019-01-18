@@ -20,8 +20,6 @@ class Player : public Creature{
         sf::Vector2i mouseCoord;
         Skill skills[6];
         string type;
-        //string skillsList[2];
-        bool thereIsSkin[13];
         int currentSkill;
 
     public:
@@ -34,10 +32,10 @@ class Player : public Creature{
         int getX();
         int getY();
         void setType(string type);
-        bool haveSkin(int index);
         void die(Map *map);
         void drawHp(sf::RenderWindow * window);
         void drawMP(sf::RenderWindow * window);
+        void drawCurrentSkill(sf::RenderWindow * window);
         void setAttackSpeed(int i);
         void setSkill(int skill);
         void addHP();

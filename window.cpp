@@ -1,13 +1,11 @@
 #include "window.h"
 
-Window::Window(int place):title(TITLE), width(WINWIDTH), height(WINHEIGHT), place(place){
+Window::Window():title(TITLE), width(WINWIDTH), height(WINHEIGHT){
     loop = true;
     PlayerType = "standard";
     window = new sf::RenderWindow(sf::VideoMode(width, height), title);
     window->setFramerateLimit(60);
-    changePlace(place);
 }
-
 
 void Window::pauseEvents(){
     while(window->pollEvent(event))
@@ -53,7 +51,6 @@ void Window::handleEvents(){
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
         map->doAttackPlayer(pos.x, pos.y);
-        //sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
@@ -243,7 +240,6 @@ void Window::handleEventsArenaSelect(){
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         sf::Vector2i pos = sf::Mouse::getPosition(*((sf::Window*)window));
-        sf::err()<<"X: "<<pos.x<<" Y: "<<pos.y<<"\n";
         if(pos.x>152 && pos.x<373 && pos.y>184 && pos.y<484)
             changePlace(EARTH);
 

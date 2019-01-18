@@ -118,7 +118,6 @@ void Creature::action(Map *map){
     if(hp <= 0){
         die(map);
     }
-    sf::err() << hp << "  ;";
 }
 
 bool Creature::isHit(sf::IntRect obst){

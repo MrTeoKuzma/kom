@@ -35,7 +35,7 @@ class Window{
 
 
     public:
-        Window(int place);
+        Window();
         void pauseEvents();
         void handleEvents();
         void handleEventsWardrobe();

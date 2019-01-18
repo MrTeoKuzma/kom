@@ -91,39 +91,32 @@ int Player::attack(Map * map, int mX, int mY){
 
         switch(currentSkill)
         {
-        case SHOOT:
+            case SHOOT:
 
-            map->addProjectile(new Projectile(5, x, y, mX, mY, 8, "1lvl/standard/1lvl_standard.png", ENEMY));
-            break;
+                map->addProjectile(new Projectile(5, x, y, mX, mY, 8, "1lvl/standard/1lvl_standard.png", ENEMY));
+                return 1;
+                break;
 
-        case FIRE1:
-            if (mp - 20 >= 0)
-            {
-                mp -= 20;
-                map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/fire/1lvl_fire.png", ENEMY));
+            case FIRE1:
+                if (mp - 20 >= 0)
+                {
+                    mp -= 20;
+                    map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/fire/1lvl_fire.png", ENEMY));
+                    return 1;
+                }
                 break;
-            }
-            else
-            {
-                //currentSkill = SHOOT;
-                break;
-            }
 
 
-        case WATER1:
-            if (mp - 20 >= 0)
-            {
-                mp -= 20;
-                map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/water/1lvl_water.png", ENEMY));
+
+            case WATER1:
+                if (mp - 20 >= 0)
+                {
+                    mp -= 20;
+                    map->addProjectile(new Projectile(10, x, y, mX, mY, 10, "1lvl/water/1lvl_water.png", ENEMY));
+                    return 1;
+                }
                 break;
-            }
-            else
-            {
-                //currentSkill = SHOOT;
-                break;
-            }
         }
-        return 1;
     }
     return 0;
 }
@@ -165,11 +158,6 @@ int Player::getY(){
 void Player::setType(string type){
     Player::type = type;
 }
-bool Player::haveSkin(int index) // preveri ce imamo skin
-{
-    return true;
-    return Player::thereIsSkin[index];
-}
 
 void Player::die(Map *map){
     map->setPlace(8);
@@ -192,6 +180,18 @@ void Player::drawMP(sf::RenderWindow * window){
     rect.setPosition(59, 32);
     window->draw(rect);
 }
+
+void Player::drawCurrentSkill(sf::RenderWindow * window){
+    sf::RectangleShape rect;
+    rect.setSize(sf::Vector2f(52, 52));
+    sf::Color color(200, 200, 200);
+    rect.setFillColor(sf::Color::Transparent);
+    rect.setOutlineColor(color);
+    rect.setOutlineThickness(4);
+    rect.setPosition(508+currentSkill*68, 732);
+    window->draw(rect);
+}
+
 void Player::setAttackSpeed(int i){
     skills[SHOOT].setCooldown(i);
 }
