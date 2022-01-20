@@ -4,7 +4,6 @@ Odličena Ekipa
 Odlična Ideja  
 Odlično delovcanje  
 Odlična organizacija  
-Čista 10ka. 
-Dmitry faggot.
+Čista 10ka.   ČISTI PROFIT
 
 
